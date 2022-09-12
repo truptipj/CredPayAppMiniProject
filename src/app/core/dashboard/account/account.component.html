@@ -1,0 +1,57 @@
+<div class='container-fluid mt-5 mb-5 p-0'>
+  <div class="inner row d-flex justify-content-center">
+      <div class="card col-md-5 col-12 box1">
+          <div class="card-content">
+              <div class="card-header">
+                Add Your Credit Card
+              </div>
+              <div class="card-body">
+                  <p><small>Payment with a credit card.</small></p>
+                  <div class="credit d-block mt-5 mx-auto"> <img class="frnt" src="https://i.imgur.com/Lj98lDm.png" width="200px"> <img class="back" src="https://i.imgur.com/HrUwtFC.png" width="200px"> </div>
+              </div>
+          </div>
+      </div>
+      <div class="card col-md-5 col-12 box2">
+          <div class="card-content">
+              <div class="card-header box2-head">
+                  <div class="heading2"> Add Credit Card Account  </div>
+              </div>
+              <div class="card-body col-10 offset-1">
+                  <form [formGroup]="addCardsForm">
+                    <div class="mb-3">
+                      <label for="exampleInputCardNumber" class="form-label">Card Number</label>
+                      <input type="text"  placeholder="Enter Correct CardNumber" class="form-control" id="exampleInputCardNumber">
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleInputPassword" class="form-label">Card Owner Name</label>
+                      <input type="text"  placeholder="Enter Correct CardOwnerName" class="form-control" id="exampleInputPassword">
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleInputPassword" class="form-label">Expiration Date</label>
+                      <input type="date"  placeholder="Enter Correct ExpirationDate" class="form-control" id="exampleInputPassword">
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleInputPassword" class="form-label" >cvv</label>
+                      <input type="number"  placeholder="Enter Correct cvv" minlength="3" maxlength="3" class="form-control" id="exampleInputPassword">
+                    </div>
+                    <div class="mb-3">
+
+                      <label for="tshirt" class="form-label">Current Bank</label>
+                      <select class="form-control dropdown">
+                        <option>Select Bank</option>
+                        <option *ngFor="let bank of bankList | keyvalue">
+                          {{ bank.value }}
+                        </option>
+                      </select>
+                    </div>
+
+                  </form>
+              </div>
+              <div class="card-footer col-10">
+
+                   <button class="btn btn-primary col-12" (click)="addCard()"> Add Card </button>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

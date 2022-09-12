@@ -1,0 +1,29 @@
+<div class="container mt-5 mb-5">
+  <div class="row m-0">
+    <div class="col-md-12">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Time</th>
+            <th scope="col">Status</th>
+            <th scope="col">Amount</th>
+            <th scope="col">CardNumber</th>
+            <th scope="col">shopCategory</th>
+          </tr>
+        </thead>
+        <tbody *ngFor='let item of shopCategoryList'>
+          <tr>
+            <th scope="row"></th>
+            <td>{{item.Time}}</td>
+            <td>{{item.Status}}</td>
+            <td>@{{item.Amount}}</td>
+            <td>@{{item.CardNumber}}</td>
+            <td>@{{item.shopCategory}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<div class='container-fluid mt-5 mb-5 p-0'>
+  <div class="inner row d-flex justify-content-center">
+      <div class="card col-md-5 col-12 box1">
+          <div class="card-content">
+              <div class="card-header">
+                  <div class="heading mb-3"> PAYMENT METHOD </div>
+                  <div class="sub-heading row text-center m-0">
+                      <div class="col-6 col-md-6 sub-heading1">By Credit Card</div>
+                  </div>
+              </div>
+              <div class="card-body">
+                  <p><small> You choose the method of payment with a credit card. Enter your paymentdetails </small></p>
+                  <div class="credit d-block mt-5 mx-auto"> <img class="frnt" src="https://i.imgur.com/Lj98lDm.png" width="200px"> <img class="back" src="https://i.imgur.com/HrUwtFC.png" width="200px"> </div>
+              </div>
+          </div>
+      </div>
+      <div class="card col-md-5 col-12 box2">
+          <div class="card-content">
+              <div class="card-header box2-head">
+                  <div class="heading2"> PAY NOW </div>
+              </div>
+              <div class="card-body col-10 offset-1">
+                <form  [formGroup]="payForm">
+
+
+
+                  <div class="mb-3">
+                    <label for="exampleInputPassword" class="form-label" >Product Name</label>
+                    <input type="text" formControlName="name"  placeholder="Enter Correct Product Name"  class="form-control" id="exampleInputPassword">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputPassword" class="form-label" >Category</label>
+                    <input type="text" formControlName="category" placeholder="Enter Correct Category" minlength="3" maxlength="3" class="form-control" id="exampleInputPassword">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputPassword" class="form-label" >Price</label>
+                    <input type="number" formControlName="Price"  placeholder="Enter Correct Price" minlength="3" maxlength="3" class="form-control" id="exampleInputPassword">
+                  </div>
+
+
+                  <div class="mb-3">
+
+                    <label for="bank" class="form-label">Select Card</label>
+                    <select formControlName="creditCard" class="form-control dropdown">
+                      <option>Select Bank</option>
+                      <option *ngFor="let bank of bankList | keyvalue">
+                        {{ bank.value }}
+                      </option>
+                    </select>
+                  </div>
+
+                </form>
+              </div>
+              <div class="card-footer col-10 offset-1 border-0 footer2">
+                  <div class="d-flex total mb-5">
+
+                  </div> <button class="btn col-12" (click)="payNow()"> PAY </button>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

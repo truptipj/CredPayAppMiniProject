@@ -1,0 +1,34 @@
+<div class="contaier">
+<div class="wrapper">
+  <div class="card px-4">
+      <div class=" my-3">
+          <p class="h8">Cards</p>
+      </div>
+
+      <div *ngFor = "let card of allCards" class="debit-card mb-3">
+        <div class="d-flex flex-column h-100">
+            <label class="d-block">
+                <div class="d-flex position-relative">
+                    <div>
+                        <img *ngIf = "card.BankName === 'SBI'" src="https://www.freepnglogos.com/uploads/visa-inc-logo-png-11.png" class="visa"
+                            alt="">
+                            <img *ngIf = "card.BankName === 'AXIS'"  src="https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-png-transparent-svg-vector-bie-supply-0.png"
+                            alt="master" class="master">
+
+                            <p>{{card.BankName}}</p>
+                        <p class="mt-2 mb-4 text-white fw-bold">{{card.CardOwnerName}}</p>
+                    </div>
+
+                </div>
+            </label>
+            <div class="mt-auto fw-bold d-flex align-items-center justify-content-between">
+                <p>{{card.CardNumber}}</p>
+                <p>{{card.ExpirationDate}}</p>
+                <p>{{card.cvv}}</p>
+            </div>
+        </div>
+    </div>
+
+  </div>
+</div>
+</div>
