@@ -9,6 +9,7 @@ import { PaymentDetailsComponent } from './payment-details/payment-details.compo
 import { CardsComponent } from './cards/cards.component';
 import { TransactComponent } from './transact/transact.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ShopComponent } from './shop/shop.component';
 
 
 
@@ -20,7 +21,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CardsComponent,
     PayNowComponent,
     PaymentDetailsComponent,
-    TransactComponent
+    TransactComponent,
+    ShopComponent
   ],
   imports: [
     CommonModule,

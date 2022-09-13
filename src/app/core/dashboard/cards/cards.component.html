@@ -10,21 +10,22 @@
             <label class="d-block">
                 <div class="d-flex position-relative">
                     <div>
-                        <img *ngIf = "card.BankName === 'SBI'" src="https://www.freepnglogos.com/uploads/visa-inc-logo-png-11.png" class="visa"
+                        <img *ngIf = "card.bank === 'SBI'" src="https://www.freepnglogos.com/uploads/visa-inc-logo-png-11.png" class="visa"
                             alt="">
-                            <img *ngIf = "card.BankName === 'AXIS'"  src="https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-png-transparent-svg-vector-bie-supply-0.png"
+                            <img *ngIf = "card.bank === 'AXIS'"  src="https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-png-transparent-svg-vector-bie-supply-0.png"
                             alt="master" class="master">
 
-                            <p>{{card.BankName}}</p>
-                        <p class="mt-2 mb-4 text-white fw-bold">{{card.CardOwnerName}}</p>
+                            <p>{{card.bank}}</p>
+                        <p class="mt-2 mb-4 text-white fw-bold">{{card.cardOwnerName}}</p>
                     </div>
 
                 </div>
             </label>
             <div class="mt-auto fw-bold d-flex align-items-center justify-content-between">
-                <p>{{card.CardNumber}}</p>
-                <p>{{card.ExpirationDate}}</p>
+                <p>{{card.cardNumber}}</p>
+                <p>{{card.expirationDate | date: 'dd/MM/YYYY'}}</p>
                 <p>{{card.cvv}}</p>
+
             </div>
         </div>
     </div>

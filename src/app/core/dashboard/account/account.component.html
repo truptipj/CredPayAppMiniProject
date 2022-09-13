@@ -20,36 +20,63 @@
                   <form [formGroup]="addCardsForm">
                     <div class="mb-3">
                       <label for="exampleInputCardNumber" class="form-label">Card Number</label>
-                      <input type="text"  placeholder="Enter Correct CardNumber" class="form-control" id="exampleInputCardNumber">
+                      <input type="text" formControlName="cardNumber" minlength="16" maxlength="16"  placeholder="Enter Correct CardNumber" class="form-control" id="exampleInputCardNumber">
+                      <small *ngIf="(addCardsControl.cardNumber.touched && addCardsControl.cardNumber.errors?.required)"
+                      class="text-danger">CardNumber is Required</small>
+                      <small *ngIf="(addCardsControl.cardNumber.errors?.pattern)"
+                      class="text-danger">CardNumber enter valid</small>
                     </div>
                     <div class="mb-3">
                       <label for="exampleInputPassword" class="form-label">Card Owner Name</label>
-                      <input type="text"  placeholder="Enter Correct CardOwnerName" class="form-control" id="exampleInputPassword">
+                      <input type="text" formControlName="cardOwnerName"  placeholder="Enter Correct Password" class="form-control" id="exampleInputPassword">
+                      <small *ngIf="(addCardsControl.cardOwnerName.touched && addCardsControl.cardOwnerName.errors?.required)"
+                      class="text-danger">CardOwnerName is Required</small>
+                      <small *ngIf="(addCardsControl.cardOwnerName.errors?.pattern)"
+                      class="text-danger">CardOwnerName enter valid</small>
                     </div>
                     <div class="mb-3">
                       <label for="exampleInputPassword" class="form-label">Expiration Date</label>
-                      <input type="date"  placeholder="Enter Correct ExpirationDate" class="form-control" id="exampleInputPassword">
+                      <input type="date" [min]="minDate" formControlName="expirationDate"  placeholder="Enter Correct Password" class="form-control" id="exampleInputPassword">
+                      <small *ngIf="(addCardsControl.expirationDate.touched && addCardsControl.expirationDate.errors?.required)"
+                      class="text-danger">ExpirationDate is Required</small>
+                      <small *ngIf="(addCardsControl.expirationDate.errors?.pattern)"
+                      class="text-danger">ExpirationDate enter valid</small>
                     </div>
                     <div class="mb-3">
                       <label for="exampleInputPassword" class="form-label" >cvv</label>
-                      <input type="number"  placeholder="Enter Correct cvv" minlength="3" maxlength="3" class="form-control" id="exampleInputPassword">
+                      <input type="number"  formControlName="cvv"  placeholder="Enter Correct Password" minlength="3" maxlength="3" class="form-control" id="exampleInputPassword">
+                      <small *ngIf="(addCardsControl.cvv.touched && addCardsControl.cvv.errors?.required)"
+                      class="text-danger">CVV is Required</small>
+                      <small *ngIf="(addCardsControl.cvv.errors?.pattern)"
+                      class="text-danger">CVV enter valid</small>
                     </div>
                     <div class="mb-3">
 
-                      <label for="tshirt" class="form-label">Current Bank</label>
-                      <select class="form-control dropdown">
+                      <select formControlName="bank" class="form-control dropdown">
                         <option>Select Bank</option>
-                        <option *ngFor="let bank of bankList | keyvalue">
-                          {{ bank.value }}
+                        <option *ngFor="let bank of bankList">
+                          {{ bank }}
                         </option>
                       </select>
+                      <small *ngIf="(addCardsControl.bank.touched && addCardsControl.bank.errors?.required)"
+                      class="text-danger">BankName is Required</small>
+                      <small *ngIf="(addCardsControl.bank.errors?.pattern)"
+                      class="text-danger">BankName enter valid</small>
+                    </div>
+                    <div class="mb-3">
+                      <label for="exampleInputBalance" class="form-label">Balance</label>
+                      <input type="number" formControlName="balace"  placeholder="Enter Correct Balance" class="form-control" id="exampleInputBalance">
+                      <small *ngIf="(addCardsControl.balace.touched && addCardsControl.balace.errors?.required)"
+                      class="text-danger">Balance is Required</small>
+                      <small *ngIf="(addCardsControl.balace.errors?.pattern)"
+                      class="text-danger">Balance enter valid</small>
                     </div>
 
                   </form>
               </div>
               <div class="card-footer col-10">
 
-                   <button class="btn btn-primary col-12" (click)="addCard()"> Add Card </button>
+                   <button class="btn btn-primary col-12" (click)="addCard()"> Add Card</button>
               </div>
           </div>
       </div>

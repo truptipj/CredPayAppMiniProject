@@ -29,11 +29,11 @@ export class LoginComponent implements OnInit {
   logIn(){
     //this.router.navigate(['user']);
 
-    let url = environment.baseUrl + "Login";
+    let url = "https://localhost:44352/api/Authenticate/login";
     this.loginService.loginPostData(url,this.loginForm.value).subscribe((res)=>{
       console.log(res);
       if(res.token) {
-     // this.authService.setToken('res.token');
+      this.authService.setToken(res.token);
     this.router.navigate(['user']);
 
       }

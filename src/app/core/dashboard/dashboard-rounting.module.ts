@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LayoutComponent } from './layout/layout.component';
 import { PayNowComponent } from './pay-now/pay-now.component';
 import { PaymentDetailsComponent } from './payment-details/payment-details.component';
+import { ShopComponent } from './shop/shop.component';
 import { TransactComponent } from './transact/transact.component';
 
 
@@ -21,7 +22,9 @@ const routes: Routes = [
        { path:'cards', component: CardsComponent} ,
        { path:'paynow', component: PayNowComponent} ,
        { path:'paymentDetails', component: PaymentDetailsComponent} ,
-       { path:'transact', component: TransactComponent}
+       { path:'transact', component: TransactComponent},
+       { path:'shop', component: ShopComponent}
+
     ]
   }
 

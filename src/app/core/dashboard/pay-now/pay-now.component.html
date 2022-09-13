@@ -20,13 +20,11 @@
                   <div class="heading2"> PAY NOW </div>
               </div>
               <div class="card-body col-10 offset-1">
-                <form  [formGroup]="payForm">
-
-
+                <form [formGroup]="payForm">
 
                   <div class="mb-3">
                     <label for="exampleInputPassword" class="form-label" >Product Name</label>
-                    <input type="text" formControlName="name"  placeholder="Enter Correct Product Name"  class="form-control" id="exampleInputPassword">
+                    <input type="text" formControlName="productName"  placeholder="Enter Correct Product Name"  class="form-control" id="exampleInputPassword">
                   </div>
                   <div class="mb-3">
                     <label for="exampleInputPassword" class="form-label" >Category</label>
@@ -34,17 +32,25 @@
                   </div>
                   <div class="mb-3">
                     <label for="exampleInputPassword" class="form-label" >Price</label>
-                    <input type="number" formControlName="Price"  placeholder="Enter Correct Price" minlength="3" maxlength="3" class="form-control" id="exampleInputPassword">
+                    <input type="number" formControlName="price"  placeholder="Enter Correct Price" minlength="3" maxlength="3" class="form-control" id="exampleInputPassword">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputPassword" class="form-label" >Amount Paid</label>
+                    <input type="number" formControlName="amountPaid"  placeholder="Enter Correct Amount Paid" minlength="3" maxlength="3" class="form-control" id="exampleInputPassword">
+                  </div>
+                  <div class="mb-3">
+                    <label for="exampleInputPassword" class="form-label" >Min Due</label>
+                    <input type="number" formControlName="minDue"  placeholder="Enter Correct Min Due" minlength="3" maxlength="3" class="form-control" id="exampleInputPassword">
                   </div>
 
 
-                  <div class="mb-3">
 
+                  <div class="mb-3">
                     <label for="bank" class="form-label">Select Card</label>
-                    <select formControlName="creditCard" class="form-control dropdown">
-                      <option>Select Bank</option>
-                      <option *ngFor="let bank of bankList | keyvalue">
-                        {{ bank.value }}
+                    <select formControlName="cardDetailId" class="form-control dropdown">
+                      <option>Select Card</option>
+                      <option *ngFor="let card of creditCards" [value]="card.cardDetailId">
+                        {{ card.cardDetailId }}  {{ card.bank }}  {{ card.cardNumber }}
                       </option>
                     </select>
                   </div>
