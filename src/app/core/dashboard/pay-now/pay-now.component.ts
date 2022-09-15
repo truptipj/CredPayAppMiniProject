@@ -19,23 +19,6 @@ export interface CardInfo {
   styleUrls: ['./pay-now.component.css']
 })
 export class PayNowComponent implements OnInit {
-  // creditCards= [
-  //   {
-  //     CardNumber:'8778787908756456',
-  //     CardOwnerName:'Mahesh Jain',
-  //     ExpirationDate: '12/5/2023',
-  //     cvv: '123',
-  //     BankName: 'SBI'
-  //   },
-  //   {
-  //     CardNumber:'9898787908756456',
-  //     CardOwnerName:'Jorge Bush',
-  //     ExpirationDate: '1/9/2024',
-  //     cvv: '124',
-  //     BankName: 'AXIS'
-  //   }
-
-  // ]
 
   creditCards: CardInfo[] = [];
   itemInfo:any;

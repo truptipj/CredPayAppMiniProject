@@ -19,4 +19,7 @@ export class CardService {
   payBill(url:any,obj:any): Observable<any>{
     return this.httpClient.post(url,obj);
   }
+  getPaymentDetail(url:any): Observable<any>{
+    return this.httpClient.get(url)
+  }
 }

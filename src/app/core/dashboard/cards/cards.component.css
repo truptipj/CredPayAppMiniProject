@@ -152,3 +152,7 @@ input[type="radio"]:hover {
   margin-top: 15px;
   margin-left: 34%;
 }
+
+p.no_cards {
+  color: white;
+}

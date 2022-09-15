@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
   logIn(){
     //this.router.navigate(['user']);
 
-    let url = "https://localhost:44352/api/Authenticate/login";
+    let url = environment.baseUrl + "Authenticate/login";
     this.loginService.loginPostData(url,this.loginForm.value).subscribe((res)=>{
       console.log(res);
       if(res.token) {

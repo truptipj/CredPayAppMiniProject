@@ -16,7 +16,6 @@ export class LayoutComponent implements OnInit {
   logout(){
     this.router.navigate(['public']);
     this.authService.deleteToken();
-
   }
 }
 

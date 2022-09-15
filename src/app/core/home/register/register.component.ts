@@ -28,9 +28,8 @@ export class RegisterComponent implements OnInit {
   }
   public onSubmit(): void {
     console.log(this.registerForm.value);
-    let url = "https://localhost:44352/api/Authenticate/register";
+    let url =environment.baseUrl + "Authenticate/register";
     this.registerService.registerPostData(url,this.registerForm.value).subscribe((res)=>{
-      alert("user created successfully!")
       this.router.navigate(['login'])
     })
 
