@@ -10,7 +10,7 @@ namespace CredAppMiniProject.Services
 {
     public interface IPaymentDetailService
     {
-        IEnumerable<PaymentDetailModel> GetPaymentDetails();
+        IEnumerable<PaymentDetailsModelInfo> GetPaymentDetails();
         PaymentDetailModel GetById(int id);
         Task<PaymentDetailModel> AddPaymentDetail(PaymentDetailModel PaymentDetailObj);
         PaymentDetailModel DeletePaymentDetail(int id);
@@ -31,7 +31,10 @@ namespace CredAppMiniProject.Services
                 Date = PaymentDetailObj.Date,
                 CardDetailId = PaymentDetailObj.CardDetailId,
                 PayId = PaymentDetailObj.PayId,
-                UserId = PaymentDetailObj.UserId
+                UserId = PaymentDetailObj.UserId,
+                Status = PaymentDetailObj.Status
+
+
             };
 
             var result = await _paymentDetailDal.AddPaymentDetail(obj);
@@ -40,7 +43,8 @@ namespace CredAppMiniProject.Services
                 Date = result.Date,
                 CardDetailId = result.CardDetailId,
                 PayId = result.PayId,
-                UserId = PaymentDetailObj.UserId
+                UserId = PaymentDetailObj.UserId,
+                Status = PaymentDetailObj.Status
             };
         }
 
@@ -52,7 +56,8 @@ namespace CredAppMiniProject.Services
                 Date = deletedata.Date,
                 CardDetailId = deletedata.CardDetailId,
                 PayId = deletedata.PayId,
-                UserId = deletedata.UserId
+                UserId = deletedata.UserId,
+                Status = deletedata.Status
             };
         }
 
@@ -66,7 +71,8 @@ namespace CredAppMiniProject.Services
                     Date = paymentdata.Date,
                     CardDetailId = paymentdata.CardDetailId,
                     PayId = paymentdata.PayId,
-                    UserId = paymentdata.UserId
+                    UserId = paymentdata.UserId,
+                    Status = paymentdata.Status
                 };
             }
             else
@@ -75,17 +81,10 @@ namespace CredAppMiniProject.Services
             }
         }
 
-        public IEnumerable<PaymentDetailModel> GetPaymentDetails()
+        public IEnumerable<PaymentDetailsModelInfo> GetPaymentDetails()
         {
             var PaymentDetail = _paymentDetailDal.GetPaymentDetails();
-            return (from paymentDetail in PaymentDetail
-                    select new PaymentDetailModel
-                    {
-                        Date = paymentDetail.Date,
-                        CardDetailId = paymentDetail.CardDetailId,
-                        PayId = paymentDetail.PayId,
-                        UserId = paymentDetail.UserId
-                    }).ToList();
+            return PaymentDetail;
         }
     }
 }

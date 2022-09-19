@@ -14,6 +14,10 @@ namespace CredAppMiniProject.Entities
         [Required]
         public DateTime Date { get; set; }
 
+        [Required]
+        public bool Status { get; set; }
+
+
         [ForeignKey("CardDetail")]
         public int CardDetailId { get; set; }
         public CardDetail CardDetail { get; set; }

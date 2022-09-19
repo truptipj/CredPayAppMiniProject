@@ -22,6 +22,7 @@ namespace CredAppMiniProject.Entities
 
         [Required]
         public int MinDue { get; set; }
+        public int Price { get; set; }
 
         [ForeignKey("CardDetail")]
         public int CardDetailId { get; set; }

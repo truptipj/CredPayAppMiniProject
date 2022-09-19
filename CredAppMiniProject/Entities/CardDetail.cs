@@ -25,7 +25,7 @@ namespace CredAppMiniProject.Entities
         public int cvv { get; set; }
 
         [Required]
-        public int Balace { get; set; }
+        public int Balance { get; set; }
 
         [Required]
         public string Bank { get; set; }

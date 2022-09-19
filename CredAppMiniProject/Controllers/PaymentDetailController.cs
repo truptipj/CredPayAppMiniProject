@@ -30,7 +30,6 @@ namespace CredAppMiniProject.Controllers
             }
             catch (Exception ex)
             {
-
                 return StatusCode(400, ex.Message);
             }
         }

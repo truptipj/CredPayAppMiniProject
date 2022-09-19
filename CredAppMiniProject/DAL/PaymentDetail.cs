@@ -1,5 +1,6 @@
 ﻿using CredAppMiniProject.Data;
 using CredAppMiniProject.Entities;
+using CredAppMiniProject.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace CredAppMiniProject.DAL
 {
     public interface IPaymentDetail
     {
-        IEnumerable<PaymentDetail> GetPaymentDetails();
+        IEnumerable<PaymentDetailsModelInfo> GetPaymentDetails();
         PaymentDetail GetById(int id);
         Task<PaymentDetail> AddPaymentDetail(PaymentDetail PaymentDetailObj);
         PaymentDetail DeletePaymentDetail(int id);
@@ -50,9 +51,30 @@ namespace CredAppMiniProject.DAL
             return _context.PaymentDetails.FirstOrDefault(i => i.PaymentDetailId == id);
         }
 
-        public IEnumerable<PaymentDetail> GetPaymentDetails()
+        public IEnumerable<PaymentDetailsModelInfo> GetPaymentDetails()
         {
-           return _context.PaymentDetails.ToList();
+
+           
+
+            //return _context.PaymentDetails.ToList();
+            var data = _context.PaymentDetails.Select(pd => new PaymentDetailsModelInfo
+            {
+                UserId = pd.UserId,
+                AmountPaid = pd.Pay.AmountPaid,
+                CardNumber = pd.CardDetail.CardNumber,
+                Balance = pd.CardDetail.Balance,
+                Bank = pd.CardDetail.Bank,
+                ProductName = pd.Pay.ProductName,
+                Category = pd.Pay.Category,
+                Price = pd.Pay.Price,
+                Status = pd.Status
+
+            }).ToList();
+
+
+
+            return data;
+
         }
     }
 }

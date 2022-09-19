@@ -13,5 +13,8 @@ namespace CredAppMiniProject.Models
 
         [Required]
         public DateTime Date { get; internal set; }
+
+        [Required]
+        public bool Status { get; set; }
     }
 }

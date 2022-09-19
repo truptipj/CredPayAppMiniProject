@@ -36,7 +36,7 @@ namespace CredAppMiniProject.Services
                 cvv = CardDetailsObj.cvv,
                 ExpirationDate = CardDetailsObj.ExpirationDate,
                 UserId = CardDetailsObj.UserId,
-                Balace = CardDetailsObj.Balace,
+                Balance = CardDetailsObj.Balance,
                 Bank = CardDetailsObj.Bank
 
             };
@@ -48,7 +48,7 @@ namespace CredAppMiniProject.Services
                 CardOwnerName = result.CardOwnerName,
                 CardNumber = result.CardNumber,
                 cvv = result.cvv,
-                Balace = result.Balace,
+                Balance = result.Balance,
                 Bank = result.Bank
             };
         }
@@ -62,7 +62,7 @@ namespace CredAppMiniProject.Services
                 CardOwnerName = deletedata.CardOwnerName,
                 CardNumber = deletedata.CardNumber,
                 cvv = deletedata.cvv,
-                Balace = deletedata.Balace,
+                Balance = deletedata.Balance,
                 Bank = deletedata.Bank
             };
         }
@@ -77,7 +77,7 @@ namespace CredAppMiniProject.Services
                         CardOwnerName = cardDetail.CardOwnerName,
                         CardNumber = cardDetail.CardNumber,
                         cvv = cardDetail.cvv,
-                        Balace = cardDetail.Balace,
+                        Balance = cardDetail.Balance,
                         Bank = cardDetail.Bank
                     }).ToList();
         }
@@ -94,7 +94,7 @@ namespace CredAppMiniProject.Services
                     CardOwnerName = obj.CardOwnerName,
                     CardNumber = obj.CardNumber,
                     cvv = obj.cvv,
-                    Balace = obj.Balace,
+                    Balance = obj.Balance,
                     Bank = obj.Bank
 
                 };
@@ -109,12 +109,13 @@ namespace CredAppMiniProject.Services
         {
             var obj = new CardDetail
             {
-                CardDetailId = updateCardDetails.CardDetailId,
+               // CardDetailId = updateCardDetails.CardDetailId,
                 CardOwnerName = updateCardDetails.CardOwnerName,
-                CardNumber = updateCardDetails.CardNumber,
-                cvv = updateCardDetails.cvv,
-                Balace = updateCardDetails.Balace,
-                Bank = updateCardDetails.Bank,
+                // CardNumber = updateCardDetails.CardNumber,
+                // cvv = updateCardDetails.cvv,
+                Balance = updateCardDetails.Balance,
+               // Bank = updateCardDetails.Bank,
+               ExpirationDate = updateCardDetails.ExpirationDate
 
             };
             var updateData = _CardDetailsDal.UpdateCardDetail(obj, id);
@@ -124,7 +125,7 @@ namespace CredAppMiniProject.Services
                 CardOwnerName = updateData.CardOwnerName,
                 CardNumber = updateData.CardNumber,
                 cvv = updateData.cvv,
-                Balace = updateData.Balace,
+                Balance = updateData.Balance,
                 Bank = updateData.Bank
 
             };

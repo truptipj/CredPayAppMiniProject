@@ -34,7 +34,7 @@ namespace CredAppMiniProject.Services
                 AmountPaid = payObj.AmountPaid,
                 MinDue = payObj.MinDue,
                 Category = payObj.Category,
-
+                Price = payObj.Price,
                 CardDetailId = payObj.CardDetailId
 
 
@@ -47,7 +47,8 @@ namespace CredAppMiniProject.Services
                 AmountPaid = result.AmountPaid,
                 MinDue = result.MinDue,
                 Category = result.Category,
-                CardDetailId = result.CardDetailId
+                CardDetailId = result.CardDetailId,
+                Price = payObj.Price,
 
             };
 
@@ -64,7 +65,8 @@ namespace CredAppMiniProject.Services
                         MinDue = payment.MinDue,
                         ProductName = payment.ProductName,
                         Category = payment.Category,
-                        CardDetailId = payment.CardDetailId
+                        CardDetailId = payment.CardDetailId,
+                        Price = payment.Price,
                     }).ToList();
         }
 
@@ -80,7 +82,8 @@ namespace CredAppMiniProject.Services
                     MinDue = paydata.MinDue,
                     ProductName = paydata.ProductName,
                     Category = paydata.Category,
-                    CardDetailId = paydata.CardDetailId
+                    CardDetailId = paydata.CardDetailId,
+                    Price = paydata.Price,
                 };
             }
             else
