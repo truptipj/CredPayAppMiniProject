@@ -11,7 +11,7 @@ namespace CredAppMiniProject.Services
     {
         IEnumerable<CardDetailModel> GetAllCardDetails(string userid);
         CardDetailModel GetById(int id);
-        Task<CardDetailModel> AddCardDetail(CardDetailModel CardDetailsObj);
+        Task<CardDetailModel> AddCardDetail(CardDetailModel CardDetail);
         CardDetailModel UpdateCardDetail(CardDetailModel updateCardDetails, int id);
         CardDetailModel DeleteCardDetail(int id);
 
@@ -26,44 +26,46 @@ namespace CredAppMiniProject.Services
             _CardDetailsDal = cardDetailsDal;
         }
 
-        public async Task<CardDetailModel> AddCardDetail(CardDetailModel CardDetailsObj)
+        public async Task<CardDetailModel> AddCardDetail(CardDetailModel CardDetail)
         {
-            var obj = new CardDetail
+            var addCardDetail = new CardDetail
             {
-                CardDetailId = CardDetailsObj.CardDetailId,
-                CardOwnerName = CardDetailsObj.CardOwnerName,
-                CardNumber = CardDetailsObj.CardNumber,
-                cvv = CardDetailsObj.cvv,
-                ExpirationDate = CardDetailsObj.ExpirationDate,
-                UserId = CardDetailsObj.UserId,
-                Balance = CardDetailsObj.Balance,
-                Bank = CardDetailsObj.Bank
+                CardDetailId = CardDetail.CardDetailId,
+                CardOwnerName = CardDetail.CardOwnerName,
+                CardNumber = CardDetail.CardNumber,
+                cvv = CardDetail.cvv,
+                ExpirationDate = CardDetail.ExpirationDate,
+                UserId = CardDetail.UserId,
+                Balance = CardDetail.Balance,
+                Bank = CardDetail.Bank
 
             };
 
-            var result = await _CardDetailsDal.AddCardDetail(obj);
+            var addCard = await _CardDetailsDal.AddCardDetail(addCardDetail);
             return new CardDetailModel
             {
-                CardDetailId = result.CardDetailId,
-                CardOwnerName = result.CardOwnerName,
-                CardNumber = result.CardNumber,
-                cvv = result.cvv,
-                Balance = result.Balance,
-                Bank = result.Bank
+                CardDetailId = addCard.CardDetailId,
+                CardOwnerName = addCard.CardOwnerName,
+                CardNumber = addCard.CardNumber,
+                cvv = addCard.cvv,
+                Balance = addCard.Balance,
+                Bank = addCard.Bank,
+                ExpirationDate = addCard.ExpirationDate,
             };
         }
 
         public CardDetailModel DeleteCardDetail(int id)
         {
-            var deletedata = _CardDetailsDal.DeleteCardDetail(id);
+            var deleteCard = _CardDetailsDal.DeleteCardDetail(id);
             return new CardDetailModel
             {
-                CardDetailId = deletedata.CardDetailId,
-                CardOwnerName = deletedata.CardOwnerName,
-                CardNumber = deletedata.CardNumber,
-                cvv = deletedata.cvv,
-                Balance = deletedata.Balance,
-                Bank = deletedata.Bank
+                CardDetailId = deleteCard.CardDetailId,
+                CardOwnerName = deleteCard.CardOwnerName,
+                CardNumber = deleteCard.CardNumber,
+                cvv = deleteCard.cvv,
+                Balance = deleteCard.Balance,
+                Bank = deleteCard.Bank,
+                ExpirationDate = deleteCard.ExpirationDate,
             };
         }
 
@@ -78,24 +80,26 @@ namespace CredAppMiniProject.Services
                         CardNumber = cardDetail.CardNumber,
                         cvv = cardDetail.cvv,
                         Balance = cardDetail.Balance,
-                        Bank = cardDetail.Bank
+                        Bank = cardDetail.Bank,
+                        ExpirationDate = cardDetail.ExpirationDate,
                     }).ToList();
         }
 
 
         public CardDetailModel GetById(int id)
         {
-            var obj = _CardDetailsDal.GetById(id);
-            if (obj != null)
+            var getCardById = _CardDetailsDal.GetById(id);
+            if (getCardById != null)
             {
                 return new CardDetailModel
                 {
-                    CardDetailId = obj.CardDetailId,
-                    CardOwnerName = obj.CardOwnerName,
-                    CardNumber = obj.CardNumber,
-                    cvv = obj.cvv,
-                    Balance = obj.Balance,
-                    Bank = obj.Bank
+                    CardDetailId = getCardById.CardDetailId,
+                    CardOwnerName = getCardById.CardOwnerName,
+                    CardNumber = getCardById.CardNumber,
+                    cvv = getCardById.cvv,
+                    Balance = getCardById.Balance,
+                    Bank = getCardById.Bank,
+                    ExpirationDate = getCardById.ExpirationDate,
 
                 };
             }
@@ -126,7 +130,8 @@ namespace CredAppMiniProject.Services
                 CardNumber = updateData.CardNumber,
                 cvv = updateData.cvv,
                 Balance = updateData.Balance,
-                Bank = updateData.Bank
+                Bank = updateData.Bank,
+                ExpirationDate = updateData.ExpirationDate,
 
             };
         }

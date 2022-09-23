@@ -4,14 +4,16 @@ using CredAppMiniProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CredAppMiniProject.Migrations
 {
     [DbContext(typeof(CredPayAppDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220918174939_status")]
+    partial class status
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,18 +33,15 @@ namespace CredAppMiniProject.Migrations
 
                     b.Property<string>("Bank")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CardNumber")
                         .IsRequired()
-                        .HasMaxLength(16)
-                        .HasColumnType("nvarchar(16)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CardOwnerName")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CreatedBy")
                         .HasColumnType("int");
@@ -116,19 +115,59 @@ namespace CredAppMiniProject.Migrations
                     b.Property<string>("ProductName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.HasKey("PayId");
+
+                    b.HasIndex("CardDetailId");
+
+                    b.ToTable("Pay");
+                });
+
+            modelBuilder.Entity("CredAppMiniProject.Entities.PaymentDetail", b =>
+                {
+                    b.Property<int>("PaymentDetailId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CardDetailId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CreatedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ModifiedBy")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ModifiedDateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PayId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("PayId");
+                    b.HasKey("PaymentDetailId");
 
                     b.HasIndex("CardDetailId");
 
+                    b.HasIndex("PayId");
+
                     b.HasIndex("UserId");
 
-                    b.ToTable("Pay");
+                    b.ToTable("PaymentDetails");
                 });
 
             modelBuilder.Entity("CredAppMiniProject.Models.ApplicationUser", b =>
@@ -347,13 +386,32 @@ namespace CredAppMiniProject.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CredAppMiniProject.Models.ApplicationUser", "applicationuser")
+                    b.Navigation("CardDetail");
+                });
+
+            modelBuilder.Entity("CredAppMiniProject.Entities.PaymentDetail", b =>
+                {
+                    b.HasOne("CredAppMiniProject.Entities.CardDetail", "CardDetail")
+                        .WithMany("PaymentDetails")
+                        .HasForeignKey("CardDetailId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CredAppMiniProject.Entities.Pay", "Pay")
+                        .WithMany("PaymentDetails")
+                        .HasForeignKey("PayId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CredAppMiniProject.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId");
 
-                    b.Navigation("applicationuser");
+                    b.Navigation("ApplicationUser");
 
                     b.Navigation("CardDetail");
+
+                    b.Navigation("Pay");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -410,6 +468,13 @@ namespace CredAppMiniProject.Migrations
             modelBuilder.Entity("CredAppMiniProject.Entities.CardDetail", b =>
                 {
                     b.Navigation("Pay");
+
+                    b.Navigation("PaymentDetails");
+                });
+
+            modelBuilder.Entity("CredAppMiniProject.Entities.Pay", b =>
+                {
+                    b.Navigation("PaymentDetails");
                 });
 #pragma warning restore 612, 618
         }

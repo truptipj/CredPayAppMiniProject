@@ -31,7 +31,6 @@ namespace CredAppMiniProject.Data
             // }
 
         public DbSet<CardDetail> CardDetails{ get; set; }
-        public DbSet<PaymentDetail> PaymentDetails { get; set; }
         public DbSet<Pay> Pay { get; set; }
     }
 

@@ -42,9 +42,6 @@ namespace CredAppMiniProject
             services.AddTransient<IPayService, PayService>();
             services.AddTransient<IPay, PayDal>();
 
-            services.AddTransient<IPaymentDetailService, PaymentDetailService>();
-            services.AddTransient<PaymentDetailDal, PaymentDetailDal>();
-
             // For Identity  
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<CredPayAppDbContext>()

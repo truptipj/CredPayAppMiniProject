@@ -7,18 +7,17 @@ namespace CredAppMiniProject.Models
     {
         public int CardDetailId { get; set; }
 
-        [Required]
+        [Required, StringLength(16, MinimumLength = 16, ErrorMessage = "The CardNumber must be a string with the exact length of 16.")]
         public string CardNumber { get; set; }
 
-        [Required]
+        [Required, MaxLength(100, ErrorMessage = "Card Owner Name Required")]
         public string CardOwnerName { get; set; }
 
-        public string UserId { get; set; }
-
-        [Required]
+        [Required, Range(0, 10000000, ErrorMessage = "Enter number between 0 to 10000000")]
         public int Balance { get; set; }
 
-        [Required]
+        [Required, MaxLength(100)]
+        //ErrorMessage = "Select AXIS, KOTAK OR SBI BANK Use Pascal Case")
         public string Bank { get; set; }
 
         [Required]
@@ -26,6 +25,8 @@ namespace CredAppMiniProject.Models
 
         [Required]
         public int cvv { get; set; }
+
+        public string UserId { get; set; }
 
         public int createdBy { get; set; }
     }

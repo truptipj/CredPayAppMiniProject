@@ -12,10 +12,10 @@ namespace CredAppMiniProject.Entities
         [Key]
         public int CardDetailId { get; set; }
 
-        [Required]
+        [Required, StringLength(16, MinimumLength = 16)]
         public string CardNumber { get; set; }
 
-        [Required]
+        [Required, MaxLength(100)]
         public string CardOwnerName { get; set; }
 
         [Required]
@@ -24,19 +24,22 @@ namespace CredAppMiniProject.Entities
         [Required]
         public int cvv { get; set; }
 
-        [Required]
+        [Required, Range(0, 10000000)]
         public int Balance { get; set; }
 
-        [Required]
+        [Required, MaxLength(100)]
         public string Bank { get; set; }
+
+        //foreign key
 
         [ForeignKey("ApplicationUser")]
         public string UserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
 
+       
         public ICollection <Pay> Pay { get; set; }
-        public ICollection<PaymentDetail> PaymentDetails { get; set; }
 
+        //Audit
         public int CreatedBy { get; set; }
         public DateTime CreatedDateTime { get; set; }
         public int ModifiedBy { get; set; }

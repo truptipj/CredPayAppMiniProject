@@ -8,10 +8,9 @@ namespace CredAppMiniProject.DAL
 {
     public interface ICardDetail
     {
-
         IEnumerable<CardDetail> GetAllCardDetails(string userid);
         CardDetail GetById(int id);
-        Task<CardDetail> AddCardDetail(CardDetail cardDetailsObj);
+        Task<CardDetail> AddCardDetail(CardDetail cardDetail);
         CardDetail UpdateCardDetail(CardDetail updateCardDetails, int id);
         CardDetail DeleteCardDetail(int id);
     }
@@ -24,10 +23,10 @@ namespace CredAppMiniProject.DAL
             _context = context;
         }
 
-        public async Task<CardDetail> AddCardDetail(CardDetail cardDetailsObj)
+        public async Task<CardDetail> AddCardDetail(CardDetail cardDetail)
         {
-            var data = await  _context.AddAsync(cardDetailsObj);
-             _context.SaveChangesAsync();
+            var data = await _context.AddAsync(cardDetail);
+            _context.SaveChangesAsync();
             return data.Entity;
         }
 
@@ -43,9 +42,9 @@ namespace CredAppMiniProject.DAL
             return null;
         }
 
-        public IEnumerable<CardDetail> GetAllCardDetails(string userid)
+        public IEnumerable<CardDetail> GetAllCardDetails(string userId)
         {
-            return _context.CardDetails.Where(x => x.UserId == userid).ToList();
+            return _context.CardDetails.Where(x => x.UserId == userId).ToList();
         }
 
         public CardDetail GetById(int id)
@@ -63,18 +62,15 @@ namespace CredAppMiniProject.DAL
                     CardDetailsData.CardOwnerName = updateCardDetails.CardOwnerName;
                 //CardDetailsData.CardNumber = updateCardDetails.CardNumber;
                 CardDetailsData.ExpirationDate = updateCardDetails.ExpirationDate;
-               // CardDetailsData.cvv = updateCardDetails.cvv;
+                // CardDetailsData.cvv = updateCardDetails.cvv;
                 CardDetailsData.Balance = updateCardDetails.Balance;
-               // CardDetailsData.Bank = updateCardDetails.Bank;
-
+                // CardDetailsData.Bank = updateCardDetails.Bank;
 
                 var updateddata = _context.CardDetails.Update(CardDetailsData);
                 _context.SaveChanges();
                 return updateddata.Entity;
-
             }
             return updateCardDetails;
         }
-
     }
 }

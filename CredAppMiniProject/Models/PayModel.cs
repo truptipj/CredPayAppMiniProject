@@ -22,5 +22,9 @@ namespace CredAppMiniProject.Models
         public string Category { get; set; }
         public int CardDetailId { get; set; }
         public int createdBy { get; set; }
+        
+
+        public string UserId { get; set; }
+        public bool Status { get; set; }
     }
 }

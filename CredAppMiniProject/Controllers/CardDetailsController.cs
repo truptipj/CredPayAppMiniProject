@@ -1,5 +1,6 @@
 ﻿using CredAppMiniProject.Models;
 using CredAppMiniProject.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace CredAppMiniProject.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CardDetailsController : ControllerBase
@@ -31,7 +33,7 @@ namespace CredAppMiniProject.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(400, ex.Message);
+                throw new InvalidOperationException("Custom Error Text " + ex.Message);
             }
         }
 
@@ -44,24 +46,22 @@ namespace CredAppMiniProject.Controllers
             }
             catch (Exception ex)
             {
-
-                return StatusCode(400, ex.Message);
+                throw new InvalidOperationException("Custom Error Text " + ex.Message);
             }
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddCardDetails(CardDetailModel cardDetailObj)
+        public async Task<IActionResult> AddCardDetails(CardDetailModel cardDetail)
         {
             try
             {
                 var user = await _userManager.FindByNameAsync(User.Identity.Name);
-                cardDetailObj.UserId = user.Id;
-                return Ok(_cardDetailService.AddCardDetail(cardDetailObj));
+                cardDetail.UserId = user.Id;
+                return Ok(_cardDetailService.AddCardDetail(cardDetail));
             }
             catch (Exception ex)
             {
-
-                return StatusCode(400, ex.Message);
+                throw new InvalidOperationException("Custom Error Text " + ex.Message);
             }
         }
 
@@ -75,8 +75,7 @@ namespace CredAppMiniProject.Controllers
             }
             catch (Exception ex)
             {
-
-                return StatusCode(400, ex.Message);
+                throw new InvalidOperationException("Custom Error Text " + ex.Message);
             }
         }
 
@@ -89,8 +88,7 @@ namespace CredAppMiniProject.Controllers
             }
             catch (Exception ex)
             {
-
-                return StatusCode(400, ex.Message);
+                throw new InvalidOperationException("Custom Error Text " + ex.Message);
             }
         }
     }

@@ -1,7 +1,9 @@
 ﻿using CredAppMiniProject.Models;
 using CredAppMiniProject.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Threading.Tasks;
 
 namespace CredAppMiniProject.Controllers
 {
@@ -10,22 +12,26 @@ namespace CredAppMiniProject.Controllers
     public class PayController : ControllerBase
     {
         private readonly IPayService _PayService;
-        public PayController(IPayService PayService)
+        private readonly UserManager<ApplicationUser> _userManager;
+
+        public PayController(UserManager<ApplicationUser> userManager, IPayService PayService)
         {
             _PayService = PayService;
+            _userManager = userManager;
         }
 
         [HttpGet]
-        public IActionResult GetPay()
+        public async Task<IActionResult> GetPay()
         {
             try
             {
-                return Ok(_PayService.GetPay());
+                var user = await _userManager.FindByNameAsync(User.Identity.Name);
+                string userid = user.Id;
+                return Ok(_PayService.GetPay(userid));
             }
             catch (Exception ex)
             {
-
-                return StatusCode(400, ex.Message);
+                throw new InvalidOperationException("Custom Error Text " + ex.Message);
             }
         }
 
@@ -38,22 +44,35 @@ namespace CredAppMiniProject.Controllers
             }
             catch (Exception ex)
             {
-
-                return StatusCode(400, ex.Message);
+                throw new InvalidOperationException("Custom Error Text " + ex.Message);
             }
         }
 
         [HttpPost]
-        public IActionResult AddPay(PayModel PayObj)
+        public async Task<IActionResult> AddPay(PayModel Pay)
         {
             try
             {
-                return Ok(_PayService.AddPay(PayObj));
+                var user = await _userManager.FindByNameAsync(User.Identity.Name);
+                Pay.UserId = user.Id;
+                return Ok(_PayService.AddPay(Pay));
             }
             catch (Exception ex)
             {
+                throw new InvalidOperationException("Custom Error Text " + ex.Message);
+            }
+        }
+        [HttpPut]
+        public IActionResult UpdatePay(PayModel updatePay, int id)
+        {
+            try
+            {
 
-                return StatusCode(400, ex.Message);
+                return Ok(_PayService.UpdatePay(updatePay, id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest( ex.Message);
             }
         }
     }

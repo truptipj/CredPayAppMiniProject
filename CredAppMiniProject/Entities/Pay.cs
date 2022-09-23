@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using CredAppMiniProject.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +24,7 @@ namespace CredAppMiniProject.Entities
         [Required]
         public int MinDue { get; set; }
         public int Price { get; set; }
+        public bool Status { get; set; }
 
         [ForeignKey("CardDetail")]
         public int CardDetailId { get; set; }
@@ -30,7 +32,9 @@ namespace CredAppMiniProject.Entities
         [JsonIgnore]
         public CardDetail CardDetail { get; set; }
 
-        public ICollection<PaymentDetail> PaymentDetails { get; set; }
+        [ForeignKey("applicationuser")]
+        public string UserId { get; set; }
+        public ApplicationUser applicationuser { get; set; }
 
         public int CreatedBy { get; set; }
         public DateTime CreatedDateTime { get; set; }
