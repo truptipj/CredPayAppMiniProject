@@ -8,21 +8,13 @@ import { CardService } from '../../service/card.service';
   styleUrls: ['./payment-details.component.css']
 })
 export class PaymentDetailsComponent implements OnInit {
-  shopCategoryList: any =[]
-BankNameList: any =[]
-allTransactList: any =[]
+ paymentDetail: any
   constructor(private cardService: CardService) { }
 
   ngOnInit(): void {
-    this.getPaymentDetail();
+    debugger;
+    let payment:any = (localStorage.getItem('selectetItem'));
+    this.paymentDetail = JSON.parse(payment);
+    console.log(this.paymentDetail);
   }
-  getPaymentDetail(){
-    let url = environment.baseUrl + "PaymentDetail";
-    this.cardService.getCard(url).subscribe((res)=>{
-      if(res) {
-        console.log(res);
-      }
-    })
-
-}
 }

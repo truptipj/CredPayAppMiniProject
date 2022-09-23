@@ -27,7 +27,6 @@ export class LoginComponent implements OnInit {
 
 
   logIn(){
-    //this.router.navigate(['user']);
 
     let url = environment.baseUrl + "Authenticate/login";
     this.loginService.loginPostData(url,this.loginForm.value).subscribe((res)=>{

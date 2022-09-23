@@ -5,7 +5,17 @@
         <p class="h8">Cards</p>
       </div>
 
-      <div *ngFor="let card of allCards" class="debit-card mb-3">
+           <div class="input-group">
+        <input [(ngModel)]="filterTerm" type="text" class="form-control" placeholder="Search this cards">
+        <div class="input-group-append">
+          <button class="btn btn-info" type="button">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div>
+
+
+      <div class="debit-card mb-3" *ngFor="let card of allCards | filter:filterTerm | paginate: { itemsPerPage: 5, currentPage: p }">
         <div class="d-flex flex-column h-100">
           <label class="d-block">
             <div class="d-flex position-relative">
@@ -39,14 +49,40 @@
           <div
             class="mt-auto fw-bold d-flex align-items-center justify-content-between"
           >
-            <p>{{ card.cardNumber }}</p>
+            <p>{{ card.cardNumber | maskCard }}</p>
             <p>{{ card.expirationDate | date: "dd/MM/YYYY" }}</p>
-            <p>{{ card.cvv }}</p>
+            <p>{{ card.cvv | maskCard}}</p>
           </div>
         </div>
+
+        <div class="row">
+
+              <a href="#" (click)="editCard(card)" routerLink="/user/account" class="btn btn-success a-btn-slide-text">
+                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                  <span><strong>Edit</strong></span>
+              </a>
+
+              <a href="#" (click)="deleteCard(card)" class="btn btn-danger a-btn-slide-text">
+                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                  <span><strong>Delete</strong></span>
+              </a>
+              <a href="#" class="btn btn-light a-btn-slide-text">
+                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                <span><strong>{{card.balance}}</strong></span>
+            </a>
+            </div>
+
       </div>
 
-      <p *ngIf="allCards.length === 0" class="no_cards mt-2 mb-2">No Cards</p>
+
+
     </div>
-  </div>
+  </div> <br> <br> <br>
+  <p *ngIf="allCards.length === 0" class="no_cards mt-2 mb-2">No Cards</p>
+
 </div>
+<div>
+  <div class="pagination" *ngIf="allCards.length > 0">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+ </div>

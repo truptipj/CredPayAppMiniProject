@@ -22,7 +22,6 @@ export class RegisterComponent implements OnInit {
         FullName: ['', Validators.required],
       Password: [  '', [
         Validators.required
-       // Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')
        ]  ],
        },);
   }
@@ -39,72 +38,3 @@ openLogin(){
   this.router.navigate(['login'])
 }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//   register ! : FormGroup;
-//   constructor(private registerService: RegisterService,private formBuilder:FormBuilder,private http:HttpClient,private router:Router) { }
-
-//   ngOnInit(): void {
-//     this.register = this.formBuilder.group({
-//       // FullName:[''],
-//       // Email:[''],
-//       // UserName:[''],
-//       //   Password:[''],
-//       UserName: ['', Validators.required],
-//       Email: ['', [Validators.required, Validators.email]],
-//       FullName: ['', Validators.required],
-//     Password: [  '', [
-//       Validators.required
-//      // Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')
-//      ]  ],
-
-
-//     })
-//   }
-//   //make method to create user
-
-//   // registerForm(){
-//   //     this.http.post<any>('https://localhost:44341/api/Authenticate/register',this.register.value).subscribe(res=>{
-//   //       alert("Registration Successful");
-//   //       this.register.reset();
-//   //       this.router.navigate(['login'])
-//   //     })
-
-//       public registerForm(): void {
-//         console.log(this.register.value);
-//         let url = environment.baseUrl + "Register";
-//         this.registerService.registerPostData(url,this.register.value).subscribe((res)=>{
-//           if(res.result) {
-//             this.router.navigate(['login'])
-//           }
-//         })
-
-//         localStorage.setItem('form-data', JSON.stringify(this.register.value));
-//     }
-//     openLogin(){
-//       this.router.navigate(['login'])
-//     }
-//     }
-//  // }
-
-// //}

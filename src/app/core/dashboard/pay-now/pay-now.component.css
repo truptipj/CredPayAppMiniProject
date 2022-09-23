@@ -13,10 +13,10 @@ body {
   background: none;
 }
 .box1 {
-  height: 600px;
+  height: 800px;
 }
 .box2 {
-  height: 600px;
+  height: 800px;
 }
 .heading {
   font-weight: 900;
@@ -138,3 +138,5 @@ select:focus {
 .submit.disabled, .submit:disabled {
   cursor: not-allowed;
   }
+  button, input, optgroup, select, textarea {
+    margin: -3px;}

@@ -87,8 +87,12 @@
                 minlength="3"
                 maxlength="3"
                 class="form-control"
+                (keyup)="checkMinDue($event)"
                 id="exampleInputAmountPaid"
               />
+            </div>
+            <div *ngIf = "maxPayAmount && isUpdate">
+              Your Remainng Pay Balance is <u><b>{{maxPayAmount}}</b></u>
             </div>
             <div class="mb-3">
               <label for="exampleInputMinDue" class="form-label"
@@ -102,6 +106,7 @@
                 maxlength="3"
                 class="form-control"
                 id="exampleInputMinDue"
+                [readonly] = "true"
               />
             </div>
 
@@ -110,6 +115,7 @@
               <select
                 formControlName="cardDetailId"
                 class="form-control dropdown"
+                (change)="changeType()"
               >
                 <option>Select Card</option>
                 <option
@@ -119,6 +125,9 @@
                    {{ card.bank }} {{ card.cardNumber }}
                 </option>
               </select>
+            </div>
+            <div *ngIf = "minAccBal" class="mb-3">
+              <small class="text-danger">Please add money to your card</small>
             </div>
           </form>
         </div>

@@ -243,3 +243,8 @@ tbody tr td .fa-long-arrow-down {
     padding: 10px;
   }
 }
+
+.pagination {
+  padding: 30px;
+  justify-content: center;
+}

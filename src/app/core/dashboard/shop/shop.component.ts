@@ -7,12 +7,12 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./shop.component.css']
 })
 export class ShopComponent implements OnInit {
-  shopCategoryList = ["Cloths", "Shoes", "Fruits"];
+  shopCategoryList = ["Clothes", "Shoes", "Fruits"];
   categoryForm:any= FormGroup;
 
   fruitList = [
-    { name:'Pineapple', price:150 , imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsgqbDMz3-kHuJbtSFgYYvV7AXiCXE_b8gWQ&usqp=CAU'},
     { name:'Apple', price:200,imageUrl: 'https://post.healthline.com/wp-content/uploads/2020/10/apple-basket-apples-732x549-thumbnail-732x549.jpg'},
+    { name:'Pineapple', price:150 , imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsgqbDMz3-kHuJbtSFgYYvV7AXiCXE_b8gWQ&usqp=CAU'},
     { name:'Orange', price:180,  imageUrl: 'https://cdn.britannica.com/24/174524-050-A851D3F2/Oranges.jpg'},
   ]
   clothList = [
@@ -35,7 +35,7 @@ export class ShopComponent implements OnInit {
     })
   }
   changeType() {
-    if(this.categoryForm.value.category === 'Cloths') {
+    if(this.categoryForm.value.category === 'Clothes') {
       this.shopList = this.clothList
     }
     if(this.categoryForm.value.category === 'Shoes') {

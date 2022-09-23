@@ -1,15 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { CardService } from '../../service/card.service';
-export interface CardInfo {
-  cardNumber: string,
-  cardOwnerName: string,
-  userId: number,
-  balace: number,
-  bank: string,
-  expirationDate: Date,
-  cvv: number,
-}
+import { CardInfo } from '../CardInfo';
+
 
 @Component({
   selector: 'app-cards',
@@ -19,8 +12,8 @@ export interface CardInfo {
 export class CardsComponent implements OnInit {
 
   allCards: CardInfo[] = [];
-
-
+  p: number = 1;
+  filterTerm!: string;
   constructor(private cardService: CardService) { }
 
   ngOnInit(): void {
@@ -31,6 +24,17 @@ export class CardsComponent implements OnInit {
     this.cardService.getCard(url).subscribe((res)=>{
       if(res) {
         this.allCards = res;
+      }
+    })
+  }
+  editCard(card:any){
+    localStorage.setItem('editCardInfo', JSON.stringify(card))
+  }
+  deleteCard(card:any){
+    let url = environment.baseUrl + "CardDetails?id=" + card.cardDetailId;
+    this.cardService.deleteCard(url).subscribe((res)=>{
+      if(res) {
+        this.getAllCards();
       }
     })
   }

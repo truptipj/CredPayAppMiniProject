@@ -16,10 +16,22 @@ export class CardService {
   getCard(url:any): Observable<any>{
      return this.httpClient.get(url)
   }
+  updateCard(url:any,obj:any): Observable<any>{
+    return this.httpClient.put(url,obj)
+ }
   payBill(url:any,obj:any): Observable<any>{
     return this.httpClient.post(url,obj);
   }
+  updateBill(url:any,obj:any): Observable<any>{
+    return this.httpClient.put(url,obj)
+ }
   getPaymentDetail(url:any): Observable<any>{
     return this.httpClient.get(url)
   }
+  getTransactions(url:any): Observable<any>{
+    return this.httpClient.get(url)
+  }
+  deleteCard(url:any): Observable<any>{
+    return this.httpClient.delete(url)
+ }
 }
