@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,9 +9,8 @@ import { Observable } from 'rxjs';
 export class LoginService {
 
   constructor(private http:HttpClient) { }
-  loginPostData(url:any,data:any):Observable<any>{
-    const headers = { 'content-type': 'application/json'}
-    const body=JSON.stringify(data);
-    return this.http.post(url, body,{'headers':headers})
+  loginPostData(data:any):Observable<any>{
+    let url = environment.baseUrl + 'Authenticate/login';
+    return this.http.post(url, data)
    }
   }

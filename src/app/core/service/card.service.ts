@@ -10,28 +10,35 @@ export class CardService {
 
   constructor(private httpClient: HttpClient,) { }
 
-  addCard(url:any,obj:any): Observable<any>{
-    return this.httpClient.post(url,obj);
+  addCard(cardReq:any): Observable<any>{
+    let url = environment.baseUrl + "CardDetails";
+    return this.httpClient.post(url,cardReq);
   }
-  getCard(url:any): Observable<any>{
+  getCard(): Observable<any>{
+    let url = environment.baseUrl + "CardDetails";
      return this.httpClient.get(url)
   }
-  updateCard(url:any,obj:any): Observable<any>{
-    return this.httpClient.put(url,obj)
+  updateCard(id:number,cardReq:any): Observable<any>{
+    let url = environment.baseUrl + "CardDetails?id=" + id;
+    return this.httpClient.put(url,cardReq)
  }
-  payBill(url:any,obj:any): Observable<any>{
+  payBill(obj:any): Observable<any>{
+    let url = environment.baseUrl + 'Pay';
     return this.httpClient.post(url,obj);
   }
-  updateBill(url:any,obj:any): Observable<any>{
+  updateBill(id:any,obj:any): Observable<any>{
+    let url = environment.baseUrl + 'Pay?id=' + id;
     return this.httpClient.put(url,obj)
  }
   getPaymentDetail(url:any): Observable<any>{
     return this.httpClient.get(url)
   }
-  getTransactions(url:any): Observable<any>{
+  getTransactions(): Observable<any>{
+    let url = environment.baseUrl + "Pay";
     return this.httpClient.get(url)
   }
-  deleteCard(url:any): Observable<any>{
+  deleteCard(id:any): Observable<any>{
+    let url = environment.baseUrl + "CardDetails?id=" + id;
     return this.httpClient.delete(url)
  }
 }

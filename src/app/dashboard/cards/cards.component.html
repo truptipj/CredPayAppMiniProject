@@ -1,0 +1,114 @@
+<div class="contaier">
+  <div class="wrapper">
+    <div class="card px-4">
+      <div>
+        <p>Cards</p>
+        <button class="btn btn-primary" routerLink="/user/account" type="button"> Add-Card</button>
+      </div>
+
+           <div class="input-group">
+        <input [(ngModel)]="filterTerm" type="text" class="form-control" placeholder="Search this cards">
+        <div class="input-group-append">
+          <button class="btn btn-info" type="button">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div>
+
+
+      <div class="debit-card mb-3" *ngFor="let card of allCards | filter:filterTerm | paginate: { itemsPerPage: 5, currentPage: p }">
+        <div>
+          <label>
+            <div>
+              <div>
+                <div class="col-md-4">
+
+                                <img
+                                  *ngIf="card.bank === 'SBI'"
+                                  src="https://www.freepnglogos.com/uploads/visa-inc-logo-png-11.png"
+                                  class="sbi"
+                                  alt=""
+                                />
+                </div>
+                <div class="col-md-4">
+                                <img
+                                  *ngIf="card.bank === 'AXIS'"
+                                  src="https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-png-transparent-svg-vector-bie-supply-0.png"
+                                  alt="master"
+                                  class="kotak"
+                                />
+                </div>
+                <div class="col-md-4">
+                                <img
+                                  *ngIf="card.bank === 'KOTAK'"
+                                  src="https://www.freepnglogos.com/uploads/mastercard-png/mastercard-logo-png-transparent-svg-vector-bie-supply-0.png"
+                                  alt="master"
+                                  class="icici"
+                                />
+                </div>
+
+                                <p>{{ card.bank }}</p>
+                                <p class="mt-2 mb-4 text-white fw-bold">
+                                  {{ card.cardOwnerName }}
+                                </p>
+
+                              </div>
+            </div>
+          </label>
+          <div
+            class="mt-auto fw-bold d-flex align-items-center justify-content-between"
+          >
+            <p>{{ card.cardNumber | maskCard }}</p>
+            <p>{{ card.expirationDate | date: "dd/MM/YYYY" }}</p>
+            <p>{{ card.cvv | maskCard}}</p>
+          </div>
+        </div>
+
+
+
+        <div class="row">
+          <div class="col">
+
+            <button class="btn btn-success" (click)="editCard(card)" routerLink="/user/account" type="button">Edit</button>
+
+          </div> &nbsp;
+          <div class="col">
+            <button class="btn btn-danger" (click)="deleteCard(card)" type="button">Delete</button>
+
+            <!-- <button class="btn btn-success" type="input">{{card.balance}}</button> -->
+
+          </div>
+        </div>
+
+        <!-- <div class="row">
+
+              <a href="#" (click)="editCard(card)" routerLink="/user/account" class="btn btn-success a-btn-slide-text">
+                  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                  <span><strong>Edit</strong></span>
+              </a>
+
+              <a href="#" (click)="deleteCard(card)" class="btn btn-danger a-btn-slide-text">
+                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                  <span><strong>Delete</strong></span>
+              </a>
+              <a href="#" class="btn btn-light a-btn-slide-text">
+                <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                <span><strong>{{card.balance}}</strong></span>
+            </a>
+            </div> -->
+
+
+      </div>
+
+
+
+    </div>
+  </div> <br> <br> <br>
+  <p *ngIf="allCards.length === 0" class="no_cards mt-2 mb-2">No Cards</p>
+
+</div>
+<div>
+  <div class="pagination" *ngIf="allCards.length > 0">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+ </div>
