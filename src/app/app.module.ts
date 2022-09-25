@@ -4,31 +4,25 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientInterceptor } from './core/interceptor/http-client.interceptor';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
-  declarations: [
-    AppComponent,
-    PageNotFoundComponent,
-  ],
+  declarations: [AppComponent, PageNotFoundComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NgxPaginationModule,
-    BrowserAnimationsModule
-
-
-
+    BrowserAnimationsModule,
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpClientInterceptor,
-      multi: true
-  }
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

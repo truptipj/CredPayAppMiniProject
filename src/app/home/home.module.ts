@@ -13,7 +13,7 @@ import { HomePageNavComponent } from './home-page-nav/home-page-nav.component';
     HomeComponent,
     RegisterComponent,
     LoginComponent,
-    HomePageNavComponent
+    HomePageNavComponent,
   ],
   imports: [
     CommonModule,
@@ -21,7 +21,6 @@ import { HomePageNavComponent } from './home-page-nav/home-page-nav.component';
     ReactiveFormsModule,
     RouterModule,
     FormsModule,
-
-  ]
+  ],
 })
-export class HomeModule { }
+export class HomeModule {}

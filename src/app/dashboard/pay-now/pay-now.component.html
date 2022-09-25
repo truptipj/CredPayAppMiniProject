@@ -16,16 +16,8 @@
             </small>
           </p>
           <div class="credit d-block mt-5 mx-auto">
-            <img
-              class="frnt"
-              src="https://i.imgur.com/Lj98lDm.png"
-              width="200px"
-            />
-            <img
-              class="back"
-              src="https://i.imgur.com/HrUwtFC.png"
-              width="200px"
-            />
+            <img class="frnt" src="https://i.imgur.com/Lj98lDm.png" width="200px" />
+            <img class="back" src="https://i.imgur.com/HrUwtFC.png" width="200px" />
           </div>
         </div>
       </div>
@@ -38,91 +30,40 @@
         <div class="card-body col-10 offset-1">
           <form [formGroup]="payForm">
             <div class="mb-3">
-              <label for="exampleInputProductName" class="form-label"
-                >Product Name</label
-              >
-              <input
-                type="text"
-                formControlName="productName"
-                placeholder="Enter Correct Product Name"
-                class="form-control"
-                id="exampleInputProductName"
-                readonly
-              />
+              <label for="exampleInputProductName" class="form-label">Product Name</label>
+              <input type="text" formControlName="productName" placeholder="Enter Correct Product Name"
+                class="form-control" id="exampleInputProductName" readonly />
             </div>
             <div class="mb-3">
-              <label for="exampleInputCategory" class="form-label"
-                >Category</label
-              >
-              <input
-                type="text"
-                formControlName="category"
-                placeholder="Enter Correct Category"
-                class="form-control"
-                id="exampleInputCategory"
-                readonly
-              />
+              <label for="exampleInputCategory" class="form-label">Category</label>
+              <input type="text" formControlName="category" placeholder="Enter Correct Category" class="form-control"
+                id="exampleInputCategory" readonly />
             </div>
             <div class="mb-3">
               <label for="exampleInputPrice" class="form-label">Price</label>
-              <input
-                type="number"
-                formControlName="price"
-                placeholder="Enter Correct Price"
-                minlength="3"
-                maxlength="3"
-                class="form-control"
-                id="exampleInputPrice"
-                readonly
-              />
+              <input type="number" formControlName="price" placeholder="Enter Correct Price" minlength="3" maxlength="3"
+                class="form-control" id="exampleInputPrice" readonly />
             </div>
             <div class="mb-3">
-              <label for="exampleInputAmountPaid" class="form-label"
-                >Amount Paid</label
-              >
-              <input
-                type="number"
-                formControlName="amountPaid"
-                placeholder="Enter Correct Amount Paid"
-                minlength="3"
-                maxlength="3"
-                class="form-control"
-                (keyup)="checkMinDue($event)"
-                id="exampleInputAmountPaid"
-              />
+              <label for="exampleInputAmountPaid" class="form-label">Amount Paid</label>
+              <input type="number" formControlName="amountPaid" placeholder="Enter Correct Amount Paid" minlength="3"
+                maxlength="3" class="form-control" (keyup)="checkMinDue($event)" id="exampleInputAmountPaid" />
             </div>
-            <div *ngIf = "maxPayAmount && isUpdate">
+            <div *ngIf="maxPayAmount && isUpdate">
               Your Remainng Pay Balance is <u><b>{{maxPayAmount}}</b></u>
             </div>
             <div class="mb-3">
-              <label for="exampleInputMinDue" class="form-label"
-                >Min Due</label
-              >
-              <input
-                type="number"
-                formControlName="minDue"
-                placeholder="Enter Correct Min Due"
-                minlength="3"
-                maxlength="3"
-                class="form-control"
-                id="exampleInputMinDue"
-                [readonly] = "true"
-              />
+              <label for="exampleInputMinDue" class="form-label">Min Due</label>
+              <input type="number" formControlName="minDue" placeholder="Enter Correct Min Due" minlength="3"
+                maxlength="3" class="form-control" id="exampleInputMinDue" [readonly]="true" />
             </div>
 
             <div class="mb-3">
               <label for="bank" class="form-label">Select Card</label>
-              <select
-                formControlName="cardDetailId"
-                class="form-control dropdown"
-                (change)="changeType()"
-              >
+              <select formControlName="cardDetailId" class="form-control dropdown" (change)="changeType()">
                 <option>Select Card</option>
-                <option
-                  *ngFor="let card of creditCards"
-                  [value]="card.cardDetailId"
-                >
-                   {{ card.bank }} {{ card.cardNumber }}
+                <option *ngFor="let card of creditCards" [value]="card.cardDetailId">
+                  {{ card.bank }} {{ card.cardNumber }}
                 </option>
               </select>
             </div>
@@ -140,14 +81,14 @@
               >Status is Required</small
             >
             </div> -->
-            <div *ngIf = "minAccBal" class="mb-3">
+            <div *ngIf="minAccBal" class="mb-3">
               <small class="text-danger">Please add money to your card</small>
             </div>
           </form>
         </div>
         <div class="card-footer col-10 offset-1 border-0 footer2">
           <div class="d-flex total mb-5"></div>
-          <button class="btn col-12 submit" [disabled] = "!payForm.valid" (click)="payNow()">PAY</button>
+          <button class="btn col-12 submit" [disabled]="!payForm.valid" (click)="payNow()">PAY</button>
         </div>
       </div>
     </div>

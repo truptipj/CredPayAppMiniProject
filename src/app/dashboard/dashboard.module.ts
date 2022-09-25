@@ -14,7 +14,6 @@ import { TransactComponent } from './transact/transact.component';
 import { MaskPipe } from './Pipes/mask/mask.pipe';
 import { DashboardNavComponent } from './dashboard-nav/dashboard-nav.component';
 
-
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -25,10 +24,7 @@ import { DashboardNavComponent } from './dashboard-nav/dashboard-nav.component';
     TransactComponent,
     ShopComponent,
     MaskPipe,
-    DashboardNavComponent
-
-
-
+    DashboardNavComponent,
   ],
   imports: [
     CommonModule,
@@ -36,9 +32,7 @@ import { DashboardNavComponent } from './dashboard-nav/dashboard-nav.component';
     ReactiveFormsModule,
     NgxPaginationModule,
     FormsModule,
-    Ng2SearchPipeModule
-
-
-  ]
+    Ng2SearchPipeModule,
+  ],
 })
-export class DashboardModule { }
+export class DashboardModule {}

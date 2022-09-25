@@ -8,21 +8,22 @@ import { RegisterService } from 'src/app/core/service/register.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
+
 export class RegisterComponent implements OnInit {
-  registerForm!: FormGroup;;
+  registerForm!: FormGroup;
 
   constructor(
     private registerService: RegisterService,
     private fb: FormBuilder,
-    private router: Router,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
-      UserName: ['', Validators.required],
-      Email: ['', [Validators.required, Validators.email]],
-      FullName: ['', Validators.required],
-      Password: ['', [Validators.required]],
+      userName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      fullName: ['', Validators.required],
+      password: ['', [Validators.required]],
     });
   }
 

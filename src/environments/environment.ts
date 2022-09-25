@@ -5,7 +5,6 @@
 export const environment = {
   production: false,
   baseUrl:"https://localhost:44352/api/"
- //baseUrl:"https://localhost:44353/api/Authenticate/"
 };
 
 /*

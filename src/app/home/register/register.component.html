@@ -10,42 +10,42 @@
           </div>
           <div class="modal-body">
             <div class="form-group">
-              <label for="exampleInputFullName">
-                FullName
+              <label for="fullName">
+                Full Name
               </label>
-              <input type="text" class="form-control" formControlName="FullName" id="FullName" />
-              <small *ngIf="registerForm.controls['FullName'].touched
-                            && registerForm.controls['FullName'].hasError('required')">FullName is Required</small>
+              <input type="text" class="form-control" formControlName="fullName" id="fullName" />
+              <small *ngIf="registerForm.controls['fullName'].touched
+                            && registerForm.controls['fullName'].hasError('required')">Full Name Is Required</small>
             </div>
             <div class="form-group">
-              <label for="exampleInputEmail">
+              <label for="email">
                 Email
               </label>
-              <input type="first" class="form-control" formControlName="Email" id="Email" />
-              <small *ngIf="registerForm.controls['Email'].touched
-                              && registerForm.controls['Email'].hasError('required')">Email is Required</small>
+              <input type="text" class="form-control" formControlName="email" id="email" />
+              <small *ngIf="registerForm.controls['email'].touched
+                              && registerForm.controls['email'].hasError('required')">Email Is Required</small>
             </div>
             <div class="form-group">
-              <label for="exampleInputUserName">
-                UserName
+              <label for="userName">
+                User Name
               </label>
-              <input type="text" class="form-control" formControlName="UserName" id="UserName" />
-              <small *ngIf="registerForm.controls['UserName'].touched
-                                  && registerForm.controls['UserName'].hasError('required')"></small>
+              <input type="text" class="form-control" formControlName="userName" id="userName" />
+              <small *ngIf="registerForm.controls['userName'].touched
+                                  && registerForm.controls['userName'].hasError('required')"></small>
             </div>
             <div class="form-group">
-              <label for="exampleInputPassword">
+              <label for="password">
                 Password
               </label>
-              <input type="Password" class="form-control" formControlName="Password" id="exampleInputPassword" />
-              <small *ngIf="registerForm.controls['Password'].touched
-                                      && registerForm.controls['Password'].hasError('required')"></small>
+              <input type="text" class="form-control" formControlName="password" id="Password" />
+              <small *ngIf="registerForm.controls['password'].touched
+                                      && registerForm.controls['password'].hasError('required')"></small>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" (click)="openLogin()" class="btn btn-secondary">Back to login</button>
+            <button type="button" (click)="openLogin()" class="btn btn-secondary">Back To Login</button>
             <button type="submit" [disabled]="!registerForm.valid" class="btn btn-primary">
-              register
+              Register
             </button>
           </div>
         </div>

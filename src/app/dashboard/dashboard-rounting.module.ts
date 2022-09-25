@@ -9,30 +9,29 @@ import { PaymentDetailsComponent } from './payment-details/payment-details.compo
 import { ShopComponent } from './shop/shop.component';
 import { TransactComponent } from './transact/transact.component';
 
-
 const routes: Routes = [
   {
-    path:'', component: DashboardNavComponent,
-    children : [
+    path: '',
+    component: DashboardNavComponent,
+    children: [
       {
-        path:'', redirectTo:'dashboard', pathMatch: 'full',
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
       },
       { path: 'dashboard', component: DashboardComponent },
-       { path:'account', component: AccountComponent} ,
-       { path:'cards', component: CardsComponent} ,
-       { path:'paynow', component: PayNowComponent} ,
-       { path:'paymentDetails', component: PaymentDetailsComponent} ,
-       { path:'transact', component: TransactComponent},
-       { path:'shop', component: ShopComponent}
-
-    ]
-  }
-
-
+      { path: 'account', component: AccountComponent },
+      { path: 'cards', component: CardsComponent },
+      { path: 'paynow', component: PayNowComponent },
+      { path: 'paymentDetails', component: PaymentDetailsComponent },
+      { path: 'transact', component: TransactComponent },
+      { path: 'shop', component: ShopComponent },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class DashboardRoutingModule { }
+export class DashboardRoutingModule {}

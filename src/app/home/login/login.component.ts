@@ -11,30 +11,28 @@ import { AuthService } from 'src/app/core/service/auth.service';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
+
   constructor(
     private loginService: LoginService,
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    private router: Router,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      UserName: ['', Validators.required],
-      Password: ['', [Validators.required]],
+      userName: ['', Validators.required],
+      password: ['', [Validators.required]],
     });
   }
 
   logIn() {
-    this.loginService
-      .loginPostData(this.loginForm.value)
-      .subscribe((res) => {
-        if (res.token) {
-          this.authService.setToken(res.token);
-
-          this.router.navigate(['user']);
-        }
-      });
+    this.loginService.loginPostData(this.loginForm.value).subscribe((res) => {
+      if (res.token) {
+        this.authService.setToken(res.token);
+        this.router.navigate(['user']);
+      }
+    });
   }
 
   goToRegister() {
