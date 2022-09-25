@@ -7,7 +7,6 @@ import { environment } from 'src/environments/environment';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
-
 export class DashboardComponent implements OnInit {
   allCard: any;
   totalBalance: any = 0;

@@ -4,13 +4,13 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoginService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http:HttpClient) { }
-  loginPostData(data:any):Observable<any>{
+  loginPostData(data: any): Observable<any> {
     let url = environment.baseUrl + 'Authenticate/login';
-    return this.http.post(url, data)
-   }
+    return this.http.post(url, data);
   }
+}

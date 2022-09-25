@@ -21,7 +21,7 @@
           <form [formGroup]="addCardsForm">
             <div class="mb-3">
               <label for="exampleInputCardNumber" class="form-label">Card Number</label>
-              <input type="number" formControlName="cardNumber" minlength="16" maxlength="16"
+              <input type="text" formControlName="cardNumber" minlength="16" maxlength="16"
                 placeholder="Enter Correct Card Number" class="form-control" id="exampleInputCardNumber"
                 [readonly]="isUpdate" (keyup)="uniqueCardNumber()" />
               <p class="text-danger" *ngIf="isDuplicateCardNo"><small>Card Number Already Exist</small></p>
@@ -60,7 +60,6 @@
               <label for="exampleInputCvv" class="form-label">CVV</label>
               <input type="number" formControlName="cvv" placeholder="Enter Correct CVV" minlength="3" maxlength="3"
                 class="form-control" id="exampleInputCvv" [readonly]="isUpdate" />
-
               <small *ngIf="
                   addCardsControl.cvv.touched &&
                   addCardsControl.cvv.errors?.required
@@ -94,8 +93,8 @@
             </div>
           </form>
         </div>
-        <div class="card-footer col-10 ">
-          <button class="btn btn-primary col-12" [disabled]="!addCardsForm.valid" (click)="addUpdateCard()">
+        <div class="card-footer">
+          <button class="btn btn-primary addCard col-md-3" [disabled]="!addCardsForm.valid" (click)="addUpdateCard()">
             {{title}} Card
           </button>
         </div>

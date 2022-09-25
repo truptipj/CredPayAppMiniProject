@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CardService } from 'src/app/core/service/card.service';
 import { environment } from 'src/environments/environment';
 import { CardInfo } from '../CardInfo';
@@ -24,7 +25,8 @@ export class PayNowComponent implements OnInit {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private cardService: CardService
+    private cardService: CardService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -40,7 +42,6 @@ export class PayNowComponent implements OnInit {
       minDue: ['', [Validators.required]],
       cardDetailId: ['', [Validators.required]],
       isActive: [true],
-      // status:[true]
     });
 
     if (this.itemInfo.cardDetailId) {
@@ -74,6 +75,7 @@ export class PayNowComponent implements OnInit {
       );
     }
   }
+
   changeType() {
     let seleObj: any;
     seleObj = this.creditCards.find(
@@ -95,23 +97,35 @@ export class PayNowComponent implements OnInit {
     this.payForm.value.status = true;
 
     if (!this.isUpdate) {
-      this.cardService.payBill(this.payForm.value).subscribe((res) => {
-        console.log(res);
-        if (res) {
-          this.updateCard();
-          this.payResponce = res.result;
-        }
-      });
-    } else {
-      this.cardService
-        .updateBill(this.itemInfo.payId, this.payForm.value)
-        .subscribe((res) => {
+      this.cardService.payBill(this.payForm.value).subscribe(
+        (res) => {
           console.log(res);
           if (res) {
             this.updateCard();
-            this.payResponce = res;
+            this.payResponce = res.result;
+            this.toastr.success('Payment Successful..!');
           }
-        });
+        },
+        (err: any) => {
+          this.toastr.error('Payment Not Done..!');
+        }
+      );
+    } else {
+      this.cardService
+        .updateBill(this.itemInfo.payId, this.payForm.value)
+        .subscribe(
+          (res) => {
+            console.log(res);
+            if (res) {
+              this.updateCard();
+              this.payResponce = res;
+              this.toastr.success('Payment Successful..!');
+            }
+          },
+          (err: any) => {
+            this.toastr.error('Payment Not Done..!');
+          }
+        );
     }
   }
 

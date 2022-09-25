@@ -7,6 +7,9 @@ import { HttpClientInterceptor } from './core/interceptor/http-client.intercepto
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [AppComponent, PageNotFoundComponent],
   imports: [
@@ -15,6 +18,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     NgxPaginationModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      preventDuplicates: true,
+      positionClass: 'toast-bottom-right',
+    }),
   ],
   providers: [
     {

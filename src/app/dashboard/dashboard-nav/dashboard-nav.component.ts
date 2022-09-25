@@ -7,8 +7,8 @@ import { AuthService } from 'src/app/core/service/auth.service';
   templateUrl: './dashboard-nav.component.html',
   styleUrls: ['./dashboard-nav.component.css'],
 })
-
 export class DashboardNavComponent implements OnInit {
+
   constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {}

@@ -4,13 +4,14 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RegisterService {
 
-  constructor(private http:HttpClient) { }
-  registerPostData(data:any):Observable<any>{
+  constructor(private http: HttpClient) {}
+
+  registerPostData(data: any): Observable<any> {
     let url = environment.baseUrl + 'Authenticate/register';
-    return this.http.post(url, data)
-   }
+    return this.http.post(url, data);
+  }
 }

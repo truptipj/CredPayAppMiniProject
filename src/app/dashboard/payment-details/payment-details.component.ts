@@ -5,7 +5,6 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './payment-details.component.html',
   styleUrls: ['./payment-details.component.css'],
 })
-
 export class PaymentDetailsComponent implements OnInit {
   paymentDetail: any;
 

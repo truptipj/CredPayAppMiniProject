@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { CardService } from 'src/app/core/service/card.service';
 import { environment } from 'src/environments/environment';
 import { CardInfo } from '../CardInfo';
@@ -8,14 +9,17 @@ import { CardInfo } from '../CardInfo';
   templateUrl: './cards.component.html',
   styleUrls: ['./cards.component.css'],
 })
-
 export class CardsComponent implements OnInit {
   transactions: any = [];
   allCards: CardInfo[] = [];
   p: number = 1;
   filterTerm!: string;
+  public selectedViewCard: any;
 
-  constructor(private cardService: CardService) {}
+  constructor(
+    private cardService: CardService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.getAllCards();
@@ -46,14 +50,24 @@ export class CardsComponent implements OnInit {
 
     console.log(cardTransaction);
     if (cardTransaction && cardTransaction.minDue !== 0) {
-      alert('cannot delete');
+      this.toastr.warning('You Cannot Delete Card Without Paying Min Due..!');
     } else {
-      this.cardService.deleteCard(card.cardDetailId).subscribe((res) => {
-        if (res) {
-          this.getAllCards();
+      this.cardService.deleteCard(card.cardDetailId).subscribe(
+        (res) => {
+          if (res) {
+            this.toastr.success('Card Deleted Successfully..!');
+            this.getAllCards();
+          }
+        },
+        (err: any) => {
+          this.toastr.error('Card Not Deleted..!');
         }
-      });
+      );
     }
+  }
+
+  viewCardDetails(card: any) {
+    this.selectedViewCard = card;
   }
 
   getPaymentDetail() {

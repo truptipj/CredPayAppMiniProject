@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  tokenKey: string ='token';
-  constructor() { }
-  setToken(token:string){
+  tokenKey: string = 'token';
+  constructor() {}
+  setToken(token: string) {
     localStorage.setItem(this.tokenKey, token);
   }
-  getToken(){
+  getToken() {
     return localStorage.getItem(this.tokenKey);
   }
-  deleteToken(){
+  deleteToken() {
     localStorage.removeItem(this.tokenKey);
   }
 }
-

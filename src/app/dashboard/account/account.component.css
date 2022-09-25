@@ -10,3 +10,8 @@
 .btn-primary:disabled {
   cursor: not-allowed;
 }
+
+.addCard {
+  margin-left: 255px;
+  margin-bottom: 7px;
+}

@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CardService } from 'src/app/core/service/card.service';
 import { CardInfo } from '../CardInfo';
 
@@ -24,7 +25,8 @@ export class AccountComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private cardService: CardService
+    private cardService: CardService,
+    private toastr: ToastrService
   ) {
     this.minDate = new Date();
   }
@@ -86,23 +88,36 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   addUpdateCard() {
     if (!this.isUpdate) {
-      this.cardService.addCard(this.addCardsForm.value).subscribe((res) => {
-        if (res.result) {
-          this.router.navigate(['/user/cards']);
+      this.cardService.addCard(this.addCardsForm.value).subscribe(
+        (res) => {
+          if (res.result) {
+            this.router.navigate(['/user/cards']);
+            this.toastr.success('Card Added Successful..!');
+          }
+        },
+        (err: any) => {
+          this.toastr.error('Card Not Added..!');
         }
-      });
+      );
     } else {
       let cardReq = this.addCardsForm.value;
       cardReq.cardDetailId = this.editCreditCard.cardDetailId;
       this.cardService
         .updateCard(this.editCreditCard.cardDetailId, cardReq)
-        .subscribe((res) => {
-          if (res) {
-            this.router.navigate(['/user/cards']);
+        .subscribe(
+          (res) => {
+            if (res) {
+              this.toastr.success('Card Updted Successful..!');
+              this.router.navigate(['/user/cards']);
+            }
+          },
+          (err: any) => {
+            this.toastr.error('Card Not Updated..!');
           }
-        });
+        );
     }
   }
+
   getToday(): string {
     return new Date().toISOString().split('T')[0];
   }
@@ -112,6 +127,7 @@ export class AccountComponent implements OnInit, OnDestroy {
     this.editCreditCard = null;
     this.isUpdate = false;
   }
+
   uniqueCardNumber() {
     console.log(this.addCardsForm.value.cardNumber);
     this.isDuplicateCardNo = this.allCards.some(

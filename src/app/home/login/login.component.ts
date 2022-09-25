@@ -3,6 +3,7 @@ import { LoginService } from '../../core/service/login.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/core/service/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService,
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -27,12 +29,18 @@ export class LoginComponent implements OnInit {
   }
 
   logIn() {
-    this.loginService.loginPostData(this.loginForm.value).subscribe((res) => {
-      if (res.token) {
-        this.authService.setToken(res.token);
-        this.router.navigate(['user']);
+    this.loginService.loginPostData(this.loginForm.value).subscribe(
+      (res) => {
+        if (res.token) {
+          this.authService.setToken(res.token);
+          this.toastr.success('Login Successful..!');
+          this.router.navigate(['user']);
+        }
+      },
+      (err: any) => {
+        this.toastr.error('Please Enter Valid Username & Pssword ..!');
       }
-    });
+    );
   }
 
   goToRegister() {

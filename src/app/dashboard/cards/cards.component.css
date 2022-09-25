@@ -1,5 +1,4 @@
 .wrapper {
-  max-width: 460px;
   box-shadow: 3px 3px 5px #1b1b1ba2;
 }
 
@@ -38,14 +37,13 @@ p {
 }
 
 .debit-card {
-  width: 100%;
-  height: 180px;
+  flex-basis: 33%;
   padding: 20px;
   margin-top: 51px;
   background-color: #0093E9;
   background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
   position: relative;
-  border-radius: 5px;
+  border-radius: 15px;
   box-shadow: 3px 3px 5px #0000001a;
   transition: all 0.3s ease-in;
   cursor: pointer;
@@ -53,6 +51,10 @@ p {
 
 .debit-card:hover {
   box-shadow: 5px 3px 5px #000000a2;
+}
+
+.blank-div {
+  flex-basis: 32%;
 }
 
 .card-2 {
@@ -70,7 +72,6 @@ p {
 
 .contaier {
   margin-top: 15px;
-  margin-left: 34%;
 }
 
 p.no_cards {
@@ -78,17 +79,21 @@ p.no_cards {
 }
 
 button.btn.btn-success {
-  margin-top: 28px;
-  width: 125px;
-  height: 38px;
-  margin-left: 50px;
+  margin-top: 50px;
+  width: 80px;
+  font-size: small;
 }
 
 button.btn.btn-danger {
-  margin-top: 28px;
-  width: 125px;
-  height: 38px;
-  margin-left: 10px;
+  margin-top: 50px;
+  width: 80px;
+  font-size: small;
+}
+
+button.btn.btn-info {
+  margin-top: 50px;
+  width: 84px;
+  font-size: small;
 }
 
 .a-btn-slide-text {
@@ -121,11 +126,11 @@ button.btn.btn-danger {
   color: rgb(170, 170, 170);
 }
 
-button.btn.btn-info {
+/* button.btn.btn-info {
   height: 39px;
   margin-top: 13px;
   width: 36px;
-}
+} */
 
 input.form-control {
   margin-top: 13px;
@@ -136,4 +141,8 @@ button.btn.btn-demo {
   width: 93px;
   margin-left: 317px;
   margin-top: -50px;
+}
+
+.contaier {
+  padding: 230px 70px 50px;
 }

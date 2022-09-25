@@ -15,7 +15,5 @@ export class MaskPipe implements PipeTransform {
     } else {
       return 'CVV';
     }
-    // let input = card.toString();
-    // return input = input.substring(0,4)+' '+input.substring(4,8)+'  '+input.substring(8,12)+'  '+input.substring(12,16);
   }
 }
