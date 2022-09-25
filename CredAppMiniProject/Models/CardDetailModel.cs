@@ -17,17 +17,16 @@ namespace CredAppMiniProject.Models
         public int Balance { get; set; }
 
         [Required, MaxLength(100)]
-        //ErrorMessage = "Select AXIS, KOTAK OR SBI BANK Use Pascal Case")
         public string Bank { get; set; }
 
         [Required]
         public DateTime ExpirationDate { get; set; }
 
         [Required]
-        public int cvv { get; set; }
+        public int CVV { get; set; }
 
         public string UserId { get; set; }
 
-        public int createdBy { get; set; }
+        public int CreatedBy { get; set; }
     }
 }

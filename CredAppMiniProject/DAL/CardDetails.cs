@@ -8,10 +8,10 @@ namespace CredAppMiniProject.DAL
 {
     public interface ICardDetail
     {
-        IEnumerable<CardDetail> GetAllCardDetails(string userid);
+        IEnumerable<CardDetail> GetCardDetails(string userid);
         CardDetail GetById(int id);
         Task<CardDetail> AddCardDetail(CardDetail cardDetail);
-        CardDetail UpdateCardDetail(CardDetail updateCardDetails, int id);
+        CardDetail UpdateCardDetail(int id, CardDetail updateCardDetails);
         CardDetail DeleteCardDetail(int id);
     }
     public class CardDetailsDal : ICardDetail
@@ -23,11 +23,38 @@ namespace CredAppMiniProject.DAL
             _context = context;
         }
 
+        public IEnumerable<CardDetail> GetCardDetails(string userId)
+        {
+            return _context.CardDetails.Where(x => x.UserId == userId).ToList();
+        }
+
+        public CardDetail GetById(int id)
+        {
+            return _context.CardDetails.FirstOrDefault(i => i.CardDetailId == id);
+        }
+
         public async Task<CardDetail> AddCardDetail(CardDetail cardDetail)
         {
             var data = await _context.AddAsync(cardDetail);
             _context.SaveChangesAsync();
             return data.Entity;
+        }
+
+        public CardDetail UpdateCardDetail(int id, CardDetail updateCardDetails)
+        {
+            var update = _context.CardDetails.FirstOrDefault(a => a.CardDetailId == id);
+            if (update != null)
+
+            {
+                update.CardOwnerName = updateCardDetails.CardOwnerName;
+                update.ExpirationDate = updateCardDetails.ExpirationDate;
+                update.Balance = updateCardDetails.Balance;
+
+                var updateddata = _context.CardDetails.Update(update);
+                _context.SaveChanges();
+                return updateddata.Entity;
+            }
+            return updateCardDetails;
         }
 
         public CardDetail DeleteCardDetail(int id)
@@ -40,37 +67,6 @@ namespace CredAppMiniProject.DAL
                 return result;
             }
             return null;
-        }
-
-        public IEnumerable<CardDetail> GetAllCardDetails(string userId)
-        {
-            return _context.CardDetails.Where(x => x.UserId == userId).ToList();
-        }
-
-        public CardDetail GetById(int id)
-        {
-            return _context.CardDetails.FirstOrDefault(i => i.CardDetailId == id);
-        }
-
-
-        public CardDetail UpdateCardDetail(CardDetail updateCardDetails, int id)
-        {
-            var update = _context.CardDetails.Where(i => i.CardDetailId == id).ToList();
-            foreach (var CardDetailsData in update)
-            {
-                if (CardDetailsData.CardDetailId == id)
-                    CardDetailsData.CardOwnerName = updateCardDetails.CardOwnerName;
-                //CardDetailsData.CardNumber = updateCardDetails.CardNumber;
-                CardDetailsData.ExpirationDate = updateCardDetails.ExpirationDate;
-                // CardDetailsData.cvv = updateCardDetails.cvv;
-                CardDetailsData.Balance = updateCardDetails.Balance;
-                // CardDetailsData.Bank = updateCardDetails.Bank;
-
-                var updateddata = _context.CardDetails.Update(CardDetailsData);
-                _context.SaveChanges();
-                return updateddata.Entity;
-            }
-            return updateCardDetails;
         }
     }
 }

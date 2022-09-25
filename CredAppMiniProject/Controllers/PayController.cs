@@ -11,12 +11,12 @@ namespace CredAppMiniProject.Controllers
     [ApiController]
     public class PayController : ControllerBase
     {
-        private readonly IPayService _PayService;
+        private readonly IPayService _payService;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public PayController(UserManager<ApplicationUser> userManager, IPayService PayService)
+        public PayController(UserManager<ApplicationUser> userManager, IPayService payService)
         {
-            _PayService = PayService;
+            _payService = payService;
             _userManager = userManager;
         }
 
@@ -27,11 +27,11 @@ namespace CredAppMiniProject.Controllers
             {
                 var user = await _userManager.FindByNameAsync(User.Identity.Name);
                 string userid = user.Id;
-                return Ok(_PayService.GetPay(userid));
+                return Ok(_payService.GetPay(userid));
             }
             catch (Exception ex)
             {
-                throw new InvalidOperationException("Custom Error Text " + ex.Message);
+                throw new InvalidOperationException(" Error " + ex.Message);
             }
         }
 
@@ -40,11 +40,11 @@ namespace CredAppMiniProject.Controllers
         {
             try
             {
-                return Ok(_PayService.GetById(Id));
+                return Ok(_payService.GetById(Id));
             }
             catch (Exception ex)
             {
-                throw new InvalidOperationException("Custom Error Text " + ex.Message);
+                throw new InvalidOperationException("Error " + ex.Message);
             }
         }
 
@@ -55,11 +55,11 @@ namespace CredAppMiniProject.Controllers
             {
                 var user = await _userManager.FindByNameAsync(User.Identity.Name);
                 Pay.UserId = user.Id;
-                return Ok(_PayService.AddPay(Pay));
+                return Ok(_payService.AddPay(Pay));
             }
             catch (Exception ex)
             {
-                throw new InvalidOperationException("Custom Error Text " + ex.Message);
+                throw new InvalidOperationException("Error" + ex.Message);
             }
         }
         [HttpPut]
@@ -67,14 +67,12 @@ namespace CredAppMiniProject.Controllers
         {
             try
             {
-
-                return Ok(_PayService.UpdatePay(updatePay, id));
+                return Ok(_payService.UpdatePay(id,updatePay));
             }
             catch (Exception ex)
             {
-                return BadRequest( ex.Message);
+                throw new InvalidOperationException("Error" + ex.Message);
             }
         }
     }
 }
-

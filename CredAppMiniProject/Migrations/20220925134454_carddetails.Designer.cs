@@ -4,14 +4,16 @@ using CredAppMiniProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CredAppMiniProject.Migrations
 {
     [DbContext(typeof(CredPayAppDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220925134454_carddetails")]
+    partial class carddetails
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -342,7 +344,7 @@ namespace CredAppMiniProject.Migrations
             modelBuilder.Entity("CredAppMiniProject.Entities.Pay", b =>
                 {
                     b.HasOne("CredAppMiniProject.Entities.CardDetail", "CardDetail")
-                        .WithMany("Pay")
+                        .WithMany()
                         .HasForeignKey("CardDetailId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -405,11 +407,6 @@ namespace CredAppMiniProject.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("CredAppMiniProject.Entities.CardDetail", b =>
-                {
-                    b.Navigation("Pay");
                 });
 #pragma warning restore 612, 618
         }

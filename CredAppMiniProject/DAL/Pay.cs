@@ -1,5 +1,6 @@
 ﻿using CredAppMiniProject.Data;
 using CredAppMiniProject.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,9 +12,7 @@ namespace CredAppMiniProject.DAL
         IEnumerable<Pay> GetPay(string userid);
         Pay GetById(int Id);
         Task<Pay> AddPay(Pay pay);
-        Pay UpdatePay(Pay updatePay, int id);
-
-
+        Pay UpdatePay(int id, Pay updatePay);
     }
     public class PayDal : IPay
     {
@@ -22,37 +21,6 @@ namespace CredAppMiniProject.DAL
         public PayDal(CredPayAppDbContext context)
         {
             _context = context;
-        }
-
-
-        public async Task<Pay> AddPay(Pay pay)
-        {
-            var data = await _context.Pay.AddAsync(pay);
-            _context.SaveChanges();
-            return data.Entity;
-            //var transaction = from f in _context.CardDetails
-            //                  join s in _context.Pay
-
-            //                 on new { f1 = f.CardNumber, f2 = f.Bank }
-            //                 equals new { f1 = s.Category, f2 = s.ProductName }
-            //                  select new
-            //                  {
-            //                      UserId = f.UserId,
-            //                      AmountPaid = s.AmountPaid,
-            //                      CardNumber = f.CardNumber,
-            //                      Bank = f.Bank,
-            //                      Balance = f.Balance,
-            //                      cvv = f.cvv,
-            //                      ExpirationDate = f.ExpirationDate,
-            //                      CardDetailId = f.CardDetailId,
-            //                      ProductName = s.ProductName,
-            //                      CardOwnerName = f.ExpirationDate,
-            //                      Category = s.Category,
-            //                      MinDue = s.MinDue,
-            //                      Price = s.Price,
-            //                      Status = s.Status
-            //                  };
-            //return transaction;
         }
 
         public IEnumerable<Pay> GetPay(string userid)
@@ -64,60 +32,34 @@ namespace CredAppMiniProject.DAL
         {
             return _context.Pay.FirstOrDefault(i => i.PayId == Id);
         }
-        public Pay UpdatePay(Pay updatePay, int id)
+
+        public async Task<Pay> AddPay(Pay pay)
         {
-            var update = _context.Pay.Where(a => a.PayId == id).ToList();
-            foreach (var data in update)
+            var data = await _context.Pay.AddAsync(pay);
+            _context.SaveChanges();
+            return data.Entity;
+
+        }
+
+        public Pay UpdatePay(int id, Pay updatePay)
+        {
+            var update = _context.Pay.FirstOrDefault(a => a.PayId == id);
+            if (update != null)
+
             {
-                if (data.PayId == id)
-                {
-                
-                    data.AmountPaid = updatePay.AmountPaid;
-                    data.MinDue = updatePay.MinDue;
-                    data.ProductName = updatePay.ProductName;
-                    data.Category = updatePay.Category;
-                    data.CardDetailId = updatePay.CardDetailId;
-                    data.Price = updatePay.Price;
-                    data.UserId = updatePay.UserId;
-                    data.Status = updatePay.Status;
-
-
-
-                    var updatedData = _context.Pay.Update(data);
-                    _context.SaveChanges();
-                    return updatedData.Entity;
-                }
+                update.AmountPaid = updatePay.AmountPaid;
+                update.MinDue = updatePay.MinDue;
+                update.ProductName = updatePay.ProductName;
+                update.Category = updatePay.Category;
+                update.CardDetailId = updatePay.CardDetailId;
+                update.Price = updatePay.Price;
+                update.UserId = update.UserId;
+                update.Status = updatePay.Status;
+                var updatedData = _context.Pay.Update(update);
+                _context.SaveChanges();
+                return updatedData.Entity;
             }
             return updatePay;
-
-            //var transaction = from f in _context.CardDetails
-            //                  join s in _context.Pay
-
-            //                 on new { f1 = f.CardNumber, f2 = f.Bank }
-            //                 equals new { f1 = s.Category, f2 = s.ProductName }
-            //                  select new 
-            //                  {
-            //                      UserId = f.UserId,
-            //                      AmountPaid = s.AmountPaid,
-            //                      CardNumber = f.CardNumber,
-            //                      Bank = f.Bank,
-            //                      Balance = f.Balance,
-            //                      cvv = f.cvv,
-            //                      ExpirationDate = f.ExpirationDate,
-            //                      CardDetailId = f.CardDetailId,
-            //                      ProductName = s.ProductName,
-            //                      CardOwnerName = f.ExpirationDate,
-            //                      Category = s.Category,
-            //                      MinDue = s.MinDue,
-            //                      Price = s.Price,
-            //                      Status = s.Status
-            //                  };
-            //_context.SaveChanges();
-            //return transaction;
-
-            // var update = _context.Pay.Where(a => a.PayId == id).ToList();
-
-
         }
     }
 }

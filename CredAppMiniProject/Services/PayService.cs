@@ -13,23 +13,21 @@ namespace CredAppMiniProject.Services
         IEnumerable<PayModel> GetPay(string UserId);
         PayModel GetById(int Id);
         Task<PayModel> AddPay(PayModel pay);
-        PayModel UpdatePay(PayModel updatePay, int id);
+        PayModel UpdatePay(int id, PayModel updatePay);
 
     }
     public class PayService : IPayService
     {
-        private readonly IPay _PayDal;
+        private readonly IPay _payDal;
         public PayService(IPay payDal)
         {
-            _PayDal = payDal;
+            _payDal = payDal;
         }
 
         public async Task<PayModel> AddPay(PayModel pay)
         {
             var addPay = new Pay
             {
-
-
                 ProductName = pay.ProductName,
                 AmountPaid = pay.AmountPaid,
                 MinDue = pay.MinDue,
@@ -38,32 +36,25 @@ namespace CredAppMiniProject.Services
                 CardDetailId = pay.CardDetailId,
                 UserId = pay.UserId,
                 Status = pay.Status,
-                //CreatedDateTime = pay.CreatedDateTime,
-                //ModifiedDateTime = pay.ModifiedDateTime;
-
-
-        };
-
-            var result = await _PayDal.AddPay(addPay);
-            return new PayModel
-            {
-                ProductName = result.ProductName,
-                AmountPaid = result.AmountPaid,
-                MinDue = result.MinDue,
-                Category = result.Category,
-                CardDetailId = result.CardDetailId,
-                Price = result.Price,
-                UserId = result.UserId,
-                Status = pay.Status,
-
-
             };
 
+            var add = await _payDal.AddPay(addPay);
+            return new PayModel
+            {
+                ProductName = add.ProductName,
+                AmountPaid = add.AmountPaid,
+                MinDue = add.MinDue,
+                Category = add.Category,
+                CardDetailId = add.CardDetailId,
+                Price = add.Price,
+                UserId = add.UserId,
+                Status = add.Status,
+            };
         }
 
         public IEnumerable<PayModel> GetPay(string userId)
         {
-            var paydata = _PayDal.GetPay(userId);
+            var paydata = _payDal.GetPay(userId);
             return (from payment in paydata
                     select new PayModel
                     {
@@ -77,13 +68,12 @@ namespace CredAppMiniProject.Services
                         UserId = payment.UserId,
                         Status = payment.Status,
 
-
                     }).ToList();
         }
 
         public PayModel GetById(int id)
         {
-            var paydata = _PayDal.GetById(id);
+            var paydata = _payDal.GetById(id);
             if (paydata != null)
             {
                 return new PayModel
@@ -96,9 +86,6 @@ namespace CredAppMiniProject.Services
                     CardDetailId = paydata.CardDetailId,
                     Price = paydata.Price,
                     UserId = paydata.UserId,
-                    Status = paydata.Status,
-
-
                 };
             }
             else
@@ -107,11 +94,11 @@ namespace CredAppMiniProject.Services
             }
         }
 
-        public PayModel UpdatePay(PayModel updatePay, int id)
+        public PayModel UpdatePay(int id, PayModel updatePay)
         {
-            var obj = new Pay
+            var update = new Pay
             {
-               UserId = updatePay.UserId,
+                UserId = updatePay.UserId,
                 PayId = updatePay.PayId,
                 AmountPaid = updatePay.AmountPaid,
                 MinDue = updatePay.MinDue,
@@ -120,13 +107,8 @@ namespace CredAppMiniProject.Services
                 CardDetailId = updatePay.CardDetailId,
                 Price = updatePay.Price,
                 Status = updatePay.Status,
-
-
-
-
-
             };
-            var updateData = _PayDal.UpdatePay(obj, id);
+            var updateData = _payDal.UpdatePay(id, update);
             return new PayModel
             {
                 PayId = updateData.PayId,

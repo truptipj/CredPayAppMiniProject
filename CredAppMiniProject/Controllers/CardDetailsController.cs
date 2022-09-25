@@ -23,17 +23,17 @@ namespace CredAppMiniProject.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllCardDetails()
+        public async Task<IActionResult> GetCardDetails()
         {
             try
             {
                 var user = await _userManager.FindByNameAsync(User.Identity.Name);
                 string userid = user.Id;
-                return Ok(_cardDetailService.GetAllCardDetails(userid));
+                return Ok(_cardDetailService.GetCardDetails(userid));
             }
             catch (Exception ex)
             {
-                throw new InvalidOperationException("Custom Error Text " + ex.Message);
+                throw new InvalidOperationException("Error" + ex.Message);
             }
         }
 
@@ -46,7 +46,7 @@ namespace CredAppMiniProject.Controllers
             }
             catch (Exception ex)
             {
-                throw new InvalidOperationException("Custom Error Text " + ex.Message);
+                throw new InvalidOperationException("Error" + ex.Message);
             }
         }
 
@@ -61,23 +61,24 @@ namespace CredAppMiniProject.Controllers
             }
             catch (Exception ex)
             {
-                throw new InvalidOperationException("Custom Error Text " + ex.Message);
+                throw new InvalidOperationException("Error" + ex.Message);
             }
         }
 
 
         [HttpPut]
-        public IActionResult UpdateCardDetails(CardDetailModel updateCardDetails, int id)
+        public IActionResult UpdateCardDetails(int id, CardDetailModel updateCardDetails)
         {
             try
             {
-                return Ok(_cardDetailService.UpdateCardDetail(updateCardDetails, id));
+                return Ok(_cardDetailService.UpdateCardDetail(id,updateCardDetails));
             }
             catch (Exception ex)
             {
-                throw new InvalidOperationException("Custom Error Text " + ex.Message);
+                throw new InvalidOperationException("Error" + ex.Message);
             }
         }
+
 
         [HttpDelete]
         public IActionResult DeleteCardDetails(int id)
@@ -88,7 +89,7 @@ namespace CredAppMiniProject.Controllers
             }
             catch (Exception ex)
             {
-                throw new InvalidOperationException("Custom Error Text " + ex.Message);
+                throw new InvalidOperationException("Error" + ex.Message);
             }
         }
     }

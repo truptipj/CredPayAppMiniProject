@@ -4,14 +4,16 @@ using CredAppMiniProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CredAppMiniProject.Migrations
 {
     [DbContext(typeof(CredPayAppDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220924045310_CVV")]
+    partial class CVV
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,9 +35,6 @@ namespace CredAppMiniProject.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("CVV")
-                        .HasColumnType("int");
 
                     b.Property<string>("CardNumber")
                         .IsRequired()
@@ -67,6 +66,9 @@ namespace CredAppMiniProject.Migrations
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("cvv")
+                        .HasColumnType("int");
 
                     b.HasKey("CardDetailId");
 

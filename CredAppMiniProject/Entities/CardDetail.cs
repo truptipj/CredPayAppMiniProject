@@ -22,7 +22,7 @@ namespace CredAppMiniProject.Entities
         public DateTime ExpirationDate { get; set; }
 
         [Required]
-        public int cvv { get; set; }
+        public int CVV { get; set; }
 
         [Required, Range(0, 10000000)]
         public int Balance { get; set; }
@@ -36,8 +36,7 @@ namespace CredAppMiniProject.Entities
         public string UserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
 
-       
-        public ICollection <Pay> Pay { get; set; }
+        public ICollection<Pay> Pay { get; set; }
 
         //Audit
         public int CreatedBy { get; set; }

@@ -29,7 +29,6 @@ namespace CredAppMiniProject.Entities
         [ForeignKey("CardDetail")]
         public int CardDetailId { get; set; }
 
-        [JsonIgnore]
         public CardDetail CardDetail { get; set; }
 
         [ForeignKey("applicationuser")]
