@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
         }
       },
       (err: any) => {
-        this.toastr.error('Please Enter Valid Username & Pssword ..!');
+        this.toastr.error('Please Enter Valid Username & Password ..!');
       }
     );
   }

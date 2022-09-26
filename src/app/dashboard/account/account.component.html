@@ -22,7 +22,7 @@
             <div class="mb-3">
               <label for="exampleInputCardNumber" class="form-label">Card Number</label>
               <input type="text" formControlName="cardNumber" minlength="16" maxlength="16"
-                placeholder="Enter Correct Card Number" class="form-control" id="exampleInputCardNumber"
+                placeholder="Enter Correct Card Number" class="form-control"
                 [readonly]="isUpdate" (keyup)="uniqueCardNumber()" />
               <p class="text-danger" *ngIf="isDuplicateCardNo"><small>Card Number Already Exist</small></p>
               <small *ngIf="

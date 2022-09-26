@@ -34,7 +34,6 @@ export class AccountComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     let editCreditCard: any = localStorage.getItem('editCardInfo');
     this.editCreditCard = JSON.parse(editCreditCard);
-    console.log(this.editCreditCard);
 
     this.addCardsForm = this.fb.group({
       cardNumber: [
@@ -92,7 +91,7 @@ export class AccountComponent implements OnInit, OnDestroy {
         (res) => {
           if (res.result) {
             this.router.navigate(['/user/cards']);
-            this.toastr.success('Card Added Successful..!');
+            this.toastr.success('Card Added Successfully..!');
           }
         },
         (err: any) => {
@@ -107,7 +106,7 @@ export class AccountComponent implements OnInit, OnDestroy {
         .subscribe(
           (res) => {
             if (res) {
-              this.toastr.success('Card Updted Successful..!');
+              this.toastr.success('Card Updated Successfully..!');
               this.router.navigate(['/user/cards']);
             }
           },

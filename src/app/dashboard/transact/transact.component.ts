@@ -59,7 +59,7 @@ export class TransactComponent implements OnInit {
     }
   }
 
-  view(item: any, isUpdate: boolean) {
+  view(item: any) {
     let selectetItem = JSON.stringify({
       productName: item.productName,
       category: item.category,
@@ -78,8 +78,5 @@ export class TransactComponent implements OnInit {
     });
 
     localStorage.setItem('selectetItem', selectetItem);
-    if (isUpdate) {
-      this.router.navigate(['/user/paynow']);
-    }
   }
 }

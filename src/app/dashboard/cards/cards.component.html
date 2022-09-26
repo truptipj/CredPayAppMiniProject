@@ -13,7 +13,14 @@
       </div>
       <div class="card_wrapper d-flex flex-wrap mb-2 justify-content-between ">
         <div class="debit-card  mb-3"
-          *ngFor="let card of allCards | filter:filterTerm | paginate: { itemsPerPage: 5, currentPage: p }">
+          *ngFor="let card of allCards | filter:filterTerm | paginate: { itemsPerPage: 6, currentPage: p }">
+
+          <div class="row icons">
+            <div class="col-2"><i data-toggle="modal" data-target="#viewModal" (click)="viewCardDetails(card)" class="fa-sharp fa-solid fa-eye"></i></div>
+            <div class="col-2"><i (click)="editCard(card)" routerLink="/user/account" class="fa-sharp fa-solid fa-pen"></i></div>
+            <div class="col-2"><i (click)="deleteCard(card)" class="fa-sharp fa-solid fa-trash"></i></div>
+          </div>
+
           <div>
             <label>
               <div>
@@ -45,7 +52,7 @@
               <p>{{ card.cvv | maskCard}}</p>
             </div>
           </div>
-          <div class="row">
+          <!-- <div class="row">
             <div class="col">
               <button class="btn btn-success" (click)="editCard(card)" routerLink="/user/account"
                 type="button">Edit</button>
@@ -57,10 +64,10 @@
               <button class="btn btn-info" (click)="viewCardDetails(card)" data-toggle="modal" data-target="#viewModal"
                 type="button">View Card</button>
             </div>
-          </div>
+          </div> -->
         </div>
         <div *ngIf="allCards.length === 0">
-          No
+          No Cards
         </div>
         <div class="blank-div"></div>
         <div class="blank-div"></div>
@@ -85,27 +92,27 @@
         </button>
       </div>
       <div class="modal-body">
-        <table class="table table-bordered table-striped">
+        <table class="animated infinite zoomIn">
           <tr>
             <td class="width"><b>Card Number</b></td>
-            <td>{{selectedViewCard.cardNumber}}</td>
+            <td>&nbsp; : &nbsp;{{selectedViewCard.cardNumber}}</td>
           </tr>
           <tr>
             <td class="width"><b>CVV</b></td>
-            <td>{{selectedViewCard.cvv}}</td>
+            <td>&nbsp; : &nbsp;{{selectedViewCard.cvv}}</td>
           </tr>
           <tr>
             <td class="width"><b>Bank</b></td>
-            <td>{{selectedViewCard.bank}}</td>
+            <td>&nbsp; : &nbsp;{{selectedViewCard.bank}}</td>
           </tr>
           <tr>
             <td class="width"><b>Balance</b></td>
-            <td>{{selectedViewCard.balance}}</td>
+            <td>&nbsp; : &nbsp;<i class="fa-sharp fa-solid fa-indian-rupee-sign"></i>{{selectedViewCard.balance}}</td>
           </tr>
         </table>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
       </div>
     </div>
   </div>

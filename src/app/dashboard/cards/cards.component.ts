@@ -34,6 +34,14 @@ export class CardsComponent implements OnInit {
     });
   }
 
+  getPaymentDetail() {
+    this.cardService.getTransactions().subscribe((res) => {
+      if (res) {
+        this.transactions = res;
+      }
+    });
+  }
+
   editCard(card: any) {
     localStorage.setItem('editCardInfo', JSON.stringify(card));
   }
@@ -68,13 +76,5 @@ export class CardsComponent implements OnInit {
 
   viewCardDetails(card: any) {
     this.selectedViewCard = card;
-  }
-
-  getPaymentDetail() {
-    this.cardService.getTransactions().subscribe((res) => {
-      if (res) {
-        this.transactions = res;
-      }
-    });
   }
 }

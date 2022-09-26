@@ -20,7 +20,7 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       preventDuplicates: true,
-      positionClass: 'toast-bottom-right',
+      positionClass: 'toast-top-right',
     }),
   ],
   providers: [

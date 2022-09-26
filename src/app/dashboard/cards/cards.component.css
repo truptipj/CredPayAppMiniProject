@@ -2,9 +2,7 @@
   box-shadow: 3px 3px 5px #1b1b1ba2;
 }
 
-p {
-  margin: 0px;
-}
+
 
 .h8 {
   font-size: 25px;
@@ -126,12 +124,6 @@ button.btn.btn-info {
   color: rgb(170, 170, 170);
 }
 
-/* button.btn.btn-info {
-  height: 39px;
-  margin-top: 13px;
-  width: 36px;
-} */
-
 input.form-control {
   margin-top: 13px;
   margin-left: 50px;
@@ -145,4 +137,24 @@ button.btn.btn-demo {
 
 .contaier {
   padding: 230px 70px 50px;
+}
+
+.icons{
+  margin-left: 220px;
+}
+.fa-eye{
+  color: #054106fa;
+}
+.fa-trash{
+  color: #cf3820
+}
+.modal-body{
+  color: black;
+  font-size: small;
+}
+.fa-indian-rupee-sign {
+  font-size: 11px;
+}
+.modal-header {
+  background-color: #2fa5b74f;
 }

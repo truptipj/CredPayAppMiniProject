@@ -34,6 +34,7 @@ export class PayNowComponent implements OnInit {
     this.getAllCards();
     this.itemInfo = JSON.parse(product);
     console.log(this.itemInfo);
+
     this.payForm = this.fb.group({
       productName: [this.itemInfo.productName, [Validators.required]],
       category: [this.itemInfo.category, [Validators.required]],
@@ -46,7 +47,6 @@ export class PayNowComponent implements OnInit {
 
     if (this.itemInfo.cardDetailId) {
       this.isUpdate = true;
-      console.log(this.itemInfo.cardDetailId);
       this.maxPayAmount = this.itemInfo.minDue;
       this.cardBalance = this.itemInfo.balance;
       this.selectedId = parseInt(this.itemInfo.cardDetailId);
@@ -115,7 +115,6 @@ export class PayNowComponent implements OnInit {
         .updateBill(this.itemInfo.payId, this.payForm.value)
         .subscribe(
           (res) => {
-            console.log(res);
             if (res) {
               this.updateCard();
               this.payResponce = res;
@@ -140,7 +139,6 @@ export class PayNowComponent implements OnInit {
     });
 
     if (card) {
-      console.log(card);
       card.balance = card.balance - this.payForm.value.amountPaid;
 
       this.cardService.updateCard(card.cardDetailId, card).subscribe((res) => {

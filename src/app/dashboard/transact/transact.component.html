@@ -1,13 +1,11 @@
 <div class="container mt-5 mb-5">
   <div class="row m-0">
     <div class="col-md-12">
-      <div class="input-group col-md-3 mb-2">
+      <div>
         <input [(ngModel)]="filterTerm" type="text" class="form-control" placeholder="Search Transaction Here">
-        <div class="input-group-append">
-          <i class="fa fa-search"></i>
-        </div>
-      </div>
-      <table class="table table-bordered">
+
+      </div> <hr>
+      <table class="table table-striped">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -36,9 +34,9 @@
             <td>{{item.status}}</td>
             <td>
               <button type="button" class="btn btn-info p-1" routerLink="/user/paymentDetails"
-                (click)="view(item, false)">View-Payment-Details</button> &nbsp;
-              <button *ngIf="item.minDue" type="button" class="btn btn-info p-1"
-                (click)="view(item, true)">Pay-Bills</button>
+                (click)="view(item)">View-Payment-Details</button> &nbsp;
+              <button routerLink="/user/paynow" *ngIf="item.minDue" type="button" class="btn btn-info p-1"
+                (click)="view(item)">Pay-Bills <i class="fa-solid fa-money-bills"></i></button>
             </td>
           </tr>
         </tbody>

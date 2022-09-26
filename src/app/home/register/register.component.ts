@@ -38,8 +38,7 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['login']);
       },
       (err: any) => {
-        console.log(err);
-        this.toastr.error(err.error.message);
+        this.toastr.error('Not Registered Already Exist..!');
       }
     );
   }
